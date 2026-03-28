@@ -3,294 +3,167 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Special Surprise for Aditi ✨</title>
-
-    <!-- Tailwind CSS -->
+    <title>A Surprise for You ✨</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Playfair for Headings, Inter for Body -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@300;400;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <!-- AOS Animation -->
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            light: '#fff5f7',
-                            soft: '#fce4ec',
-                            primary: '#ec4899', // Pink-500
-                            dark: '#9d174d',   // Pink-800
-                            accent: '#fdf2f8'
-                        }
-                    },
-                    fontFamily: {
-                        serif: ['Playfair Display', 'serif'],
-                        sans: ['Inter', 'sans-serif'],
-                        hand: ['Dancing Script', 'cursive']
-                    }
-                }
-            }
-        }
-    </script>
-
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    
     <style>
-        body { background-color: #fff5f7; scroll-behavior: smooth; }
+        body { font-family: 'Poppins', sans-serif; background-color: #fce4ec; overflow: hidden; }
         
-        /* Custom Glassmorphism */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.05);
-        }
-
-        /* Animated Background Particles */
-        .particle {
+        /* Intro Screen Container */
+        #intro-screen {
             position: fixed;
-            z-index: -1;
-            background: linear-gradient(135deg, #fce4ec 0%, #fbc2eb 100%);
-            border-radius: 50%;
-            opacity: 0.4;
-            animation: float 20s infinite linear;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            transition: opacity 1s ease-out, visibility 1s;
         }
 
-        @keyframes float {
-            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
-            50% { opacity: 0.5; }
-            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        /* Panda Styling */
+        #panda-svg {
+            width: 280px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        #panda-svg:hover { transform: scale(1.05); }
+
+        /* Clapping Animation */
+        .clapping #arm-left {
+            animation: clap-left 0.3s infinite alternate ease-in-out;
+            transform-origin: 100px 150px;
+        }
+        .clapping #arm-right {
+            animation: clap-right 0.3s infinite alternate ease-in-out;
+            transform-origin: 200px 150px;
+        }
+        
+        @keyframes clap-left {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(30deg); }
+        }
+        @keyframes clap-right {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(-30deg); }
         }
 
-        /* Timeline custom styling */
-        .timeline-line::before {
-            content: '';
+        /* Smile Animation */
+        #mouth { transition: d 0.3s ease; }
+        .smiling #mouth {
+            /* JS handles the path change for the smile */
+        }
+
+        /* Heart Particles */
+        .heart {
             position: absolute;
-            left: 50%;
-            width: 2px;
-            height: 100%;
-            background: #f472b6;
-            transform: translateX(-50%);
+            color: #ff4081;
+            font-size: 20px;
+            pointer-events: none;
+            animation: fly-up 1s ease-out forwards;
+        }
+        @keyframes fly-up {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            100% { transform: translateY(-100px) scale(1.5); opacity: 0; }
         }
 
-        @media (max-width: 768px) {
-            .timeline-line::before { left: 20px; }
-        }
-
-        /* Gift Box Animation */
-        .gift-bounce { animation: bounce 2s infinite; }
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
+        /* Hidden Class for Second Page */
+        .hidden-content { opacity: 0; visibility: hidden; pointer-events: none; }
     </style>
 </head>
-<body class="font-sans text-gray-800 antialiased overflow-x-hidden">
+<body>
 
-    <!-- Background Particles -->
-    <div class="particle" style="width: 80px; height: 80px; left: 10%; bottom: -10%; animation-delay: 0s;"></div>
-    <div class="particle" style="width: 40px; height: 40px; left: 80%; bottom: -20%; animation-delay: 5s;"></div>
-    <div class="particle" style="width: 100px; height: 100px; left: 40%; bottom: -15%; animation-delay: 2s;"></div>
-
-    <!-- Music (Same as yours) -->
-    <audio id="background-music" loop>
-        <source src="newसुबहें थीं जल्दी, wo घंटी बजती,   (1).mp3" type="audio/mpeg">
-    </audio>
-
-    <!-- 1. Gift Opener (Initial View) -->
-    <div id="gift-opener" class="fixed inset-0 z-[9999] bg-brand-light flex flex-col items-center justify-center cursor-pointer transition-all duration-1000">
-        <div class="text-brand-primary text-8xl gift-bounce mb-8">
-            <i class="fa-solid fa-gift"></i>
+    <!-- FIRST PAGE: PANDA INTRO -->
+    <div id="intro-screen">
+        <div class="text-center mb-10">
+            <h1 class="text-3xl font-bold text-pink-600 mb-2">Hello! Ek surprise hai...</h1>
+            <p class="text-gray-500 italic">Panda pe click karke toh dekho!</p>
         </div>
-        <h2 class="font-hand text-4xl text-brand-dark px-6 text-center">Aditi, click to open your surprise...</h2>
-        <p class="mt-4 text-gray-500 font-light tracking-widest uppercase text-xs">A journey through memories</p>
+
+        <!-- SVG PANDA -->
+        <div class="relative" id="panda-trigger">
+            <svg id="panda-svg" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+                <!-- Ears -->
+                <circle cx="80" cy="80" r="30" fill="#333" />
+                <circle cx="220" cy="80" r="30" fill="#333" />
+                <!-- Body -->
+                <ellipse cx="150" cy="200" rx="90" ry="80" fill="white" stroke="#333" stroke-width="4"/>
+                <!-- Head -->
+                <circle cx="150" cy="130" r="80" fill="white" stroke="#333" stroke-width="4"/>
+                <!-- Eyes Background -->
+                <ellipse cx="120" cy="120" rx="15" ry="20" fill="#333" />
+                <ellipse cx="180" cy="120" rx="15" ry="20" fill="#333" />
+                <!-- Eye Pupils -->
+                <circle cx="120" cy="115" r="5" fill="white" />
+                <circle cx="180" cy="115" r="5" fill="white" />
+                <!-- Nose -->
+                <ellipse cx="150" cy="150" rx="8" ry="5" fill="#333" />
+                <!-- Mouth (Initial state: small curve) -->
+                <path id="mouth" d="M 140 165 Q 150 175 160 165" fill="none" stroke="#333" stroke-width="3" stroke-linecap="round" />
+                <!-- Arms -->
+                <path id="arm-left" d="M 70 180 Q 30 200 60 250" fill="none" stroke="#333" stroke-width="15" stroke-linecap="round" />
+                <path id="arm-right" d="M 230 180 Q 270 200 240 250" fill="none" stroke="#333" stroke-width="15" stroke-linecap="round" />
+            </svg>
+        </div>
     </div>
 
-    <!-- Main Content (Hidden Initially) -->
-    <div id="main-content" class="opacity-0 transition-opacity duration-1000 invisible">
-        
-        <!-- 2. Hero Section -->
-        <header class="h-screen flex items-center justify-center relative px-6">
-            <div class="text-center" data-aos="zoom-out" data-aos-duration="1500">
-                <span class="text-brand-primary font-semibold tracking-[0.3em] uppercase text-sm mb-4 block">To my oldest classmate</span>
-                <h1 id="hero-heading" class="font-serif text-5xl md:text-8xl text-gray-900 leading-tight"></h1>
-                <p id="hero-sub" class="mt-6 text-lg md:text-xl text-gray-600 font-light italic max-w-2xl mx-auto"></p>
-                <div class="mt-12 animate-bounce text-gray-400">
-                    <i class="fa-solid fa-chevron-down text-2xl"></i>
-                </div>
-            </div>
-        </header>
-
-        <!-- 3. Message Section -->
-        <section class="py-24 px-6 bg-white/50">
-            <div class="max-w-4xl mx-auto glass-card rounded-[40px] p-10 md:p-20 text-center" data-aos="fade-up">
-                <i class="fa-solid fa-quote-left text-brand-soft text-6xl mb-6"></i>
-                <h2 class="font-serif text-4xl text-gray-800 mb-8">Hey, Doctor Ji 🩺</h2>
-                <p class="text-xl leading-relaxed text-gray-700 font-light">
-                    To the one who is a <span class="text-brand-primary font-semibold italic">'Doctor'</span> in every sense. You have the perfect prescription for my bad days (usually laughter and a long chat), and your friendship is the ultimate cure. Life is so much healthier and happier with you in it!
-                </p>
-            </div>
-        </section>
-
-        <!-- 4. Perks Section (Modern Cards) -->
-        <section class="py-24 px-6">
-            <div class="max-w-6xl mx-auto">
-                <h2 class="font-serif text-4xl text-center mb-16" data-aos="fade-up">Friendship Perks! ✨</h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <!-- Perk 1 -->
-                    <div class="glass-card p-8 rounded-3xl text-center hover:shadow-xl transition-all" data-aos="fade-up" data-aos-delay="100">
-                        <div class="w-16 h-16 bg-pink-100 rounded-2xl flex items-center justify-center mx-auto mb-6 text-brand-primary text-2xl">
-                            <i class="fa-solid fa-mug-hot"></i>
-                        </div>
-                        <h3 class="font-semibold text-xl mb-3">Unlimited Coffee</h3>
-                        <p class="text-gray-600 font-light">Send a '☕' and I'll be there to listen. No questions asked.</p>
-                    </div>
-                    <!-- Perk 2 -->
-                    <div class="glass-card p-8 rounded-3xl text-center hover:shadow-xl transition-all" data-aos="fade-up" data-aos-delay="200">
-                        <div class="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center mx-auto mb-6 text-blue-400 text-2xl">
-                            <i class="fa-solid fa-lightbulb"></i>
-                        </div>
-                        <h3 class="font-semibold text-xl mb-3">Free Advice</h3>
-                        <p class="text-gray-600 font-light">Brilliant ideas or stupid suggestions? I've got both ready for you!</p>
-                    </div>
-                    <!-- Perk 3 -->
-                    <div class="glass-card p-8 rounded-3xl text-center hover:shadow-xl transition-all" data-aos="fade-up" data-aos-delay="300">
-                        <div class="w-16 h-16 bg-orange-50 rounded-2xl flex items-center justify-center mx-auto mb-6 text-orange-400 text-2xl">
-                            <i class="fa-solid fa-face-laugh-squint"></i>
-                        </div>
-                        <h3 class="font-semibold text-xl mb-3">Meme Support</h3>
-                        <p class="text-gray-600 font-light">Bored? Text 'MEME' for a handpicked dose of laughter.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 5. Gallery (Clean Grid) -->
-        <section class="py-24 px-6 bg-brand-accent/50">
-            <div class="max-w-6xl mx-auto">
-                <h2 class="font-serif text-4xl text-center mb-16" data-aos="fade-up">A Glimpse of Your Journey</h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="group" data-aos="zoom-in">
-                        <div class="bg-white p-3 rounded-xl shadow-md rotate-[-2deg] group-hover:rotate-0 transition-transform duration-500">
-                            <img src="images/1000140410.png" class="rounded-lg w-full aspect-[3/4] object-cover">
-                            <p class="font-hand text-xl mt-4 text-center">The artist's soul...</p>
-                        </div>
-                    </div>
-                    <div class="group" data-aos="zoom-in" data-aos-delay="200">
-                        <div class="bg-white p-3 rounded-xl shadow-md rotate-[3deg] group-hover:rotate-0 transition-transform duration-500">
-                            <img src="images/Screenshot_20250729-135418.Photos~2.png" class="rounded-lg w-full aspect-[3/4] object-cover">
-                            <p class="font-hand text-xl mt-4 text-center">A beautiful story.</p>
-                        </div>
-                    </div>
-                    <div class="group" data-aos="zoom-in" data-aos-delay="400">
-                        <div class="bg-white p-3 rounded-xl shadow-md rotate-[-1deg] group-hover:rotate-0 transition-transform duration-500">
-                            <img src="images/1000140411.webp" class="rounded-lg w-full aspect-[3/4] object-cover">
-                            <p class="font-hand text-xl mt-4 text-center">Stay the same! ❤️</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 6. Timeline (Clean & Minimal) -->
-        <section class="py-24 px-6 overflow-hidden">
-            <h2 class="font-serif text-4xl text-center mb-20" data-aos="fade-up">Memory Lane</h2>
-            <div class="max-w-4xl mx-auto relative timeline-line">
-                
-                <!-- Entry 1 -->
-                <div class="mb-20 flex flex-col md:flex-row items-center w-full" data-aos="fade-right">
-                    <div class="w-full md:w-1/2 md:pr-12 text-center md:text-right mb-6 md:mb-0">
-                        <span class="text-brand-primary font-bold text-sm">2008</span>
-                        <h3 class="text-2xl font-serif mt-1">Our Beginning</h3>
-                        <p class="text-gray-500 font-light mt-2">No captions needed, just pure emotions.</p>
-                    </div>
-                    <div class="absolute left-1/2 -translate-x-1/2 hidden md:block w-4 h-4 bg-brand-primary rounded-full border-4 border-white shadow"></div>
-                    <div class="w-full md:w-1/2 md:pl-12">
-                        <img src="images/FB_IMG_1753510366874.jpg" class="rounded-2xl shadow-lg w-full max-w-sm mx-auto">
-                    </div>
-                </div>
-
-                <!-- Entry 2 -->
-                <div class="mb-20 flex flex-col md:flex-row-reverse items-center w-full" data-aos="fade-left">
-                    <div class="w-full md:w-1/2 md:pl-12 text-center md:text-left mb-6 md:mb-0">
-                        <span class="text-brand-primary font-bold text-sm">2011</span>
-                        <h3 class="text-2xl font-serif mt-1">2nd Class Memories</h3>
-                        <p class="text-gray-500 font-light mt-2">Monika Miss aur wo din! Quality bhale kam ho, yaadein dher saari hain.</p>
-                    </div>
-                    <div class="absolute left-1/2 -translate-x-1/2 hidden md:block w-4 h-4 bg-brand-primary rounded-full border-4 border-white shadow"></div>
-                    <div class="w-full md:w-1/2 md:pr-12">
-                        <img src="images/new.png" class="rounded-2xl shadow-lg w-full max-w-sm mx-auto">
-                    </div>
-                </div>
-
-                <!-- Add more items here following the same structure -->
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <footer class="py-20 text-center border-t border-brand-soft">
-            <div class="max-w-2xl mx-auto px-6">
-                <h2 class="font-serif text-3xl mb-4">One Last Thing...</h2>
-                <p class="text-gray-500 font-light mb-12">School ki bahut yaad aayi ye photos dhundte waqt. Agli baar aur photos lenge! 😉</p>
-                <p class="text-sm tracking-widest text-gray-400 uppercase">
-                    Crafted with ❤️ for Aditi | Happy Friendship Day 
-                    <a href="secret.html" class="hover:text-brand-primary transition-colors">!</a>
-                </p>
-            </div>
-        </footer>
+    <!-- SECOND PAGE (Main Content Placeholder) -->
+    <div id="main-content" class="min-h-screen flex items-center justify-center hidden-content transition-all duration-1000 bg-white">
+        <div class="text-center">
+            <h1 class="text-5xl font-['Dancing_Script'] text-pink-500 mb-6">Happy Birthday / Friendship Day!</h1>
+            <p class="text-gray-600 text-xl">Yeh rahi tumhari poori website...</p>
+            <div class="mt-8 text-6xl">🎂🎈✨</div>
+        </div>
     </div>
-
-    <!-- Scripts -->
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 
     <script>
-        const giftOpener = document.getElementById('gift-opener');
+        const panda = document.getElementById('panda-svg');
+        const introScreen = document.getElementById('intro-screen');
         const mainContent = document.getElementById('main-content');
-        const bgMusic = document.getElementById('background-music');
+        const mouth = document.getElementById('mouth');
 
-        giftOpener.addEventListener('click', () => {
-            // Start Music
-            bgMusic.play();
+        panda.addEventListener('click', () => {
+            // 1. Add Animation Classes
+            document.body.classList.add('clapping');
             
-            // Celebration Confetti
-            confetti({
-                particleCount: 150,
-                spread: 70,
-                origin: { y: 0.6 },
-                colors: ['#ec4899', '#fce4ec', '#fbc2eb']
-            });
+            // 2. Change Mouth to a Big Smile (SVG path update)
+            mouth.setAttribute('d', 'M 130 165 Q 150 195 170 165');
 
-            // Transition to Main Content
-            giftOpener.classList.add('opacity-0', 'invisible');
+            // 3. Create Heart Particles
+            for(let i=0; i<10; i++) {
+                createHeart();
+            }
+
+            // 4. Wait for 2 seconds then transition
             setTimeout(() => {
-                giftOpener.style.display = 'none';
-                mainContent.classList.remove('invisible');
-                mainContent.classList.add('opacity-100');
-                
-                // Initialize AOS
-                AOS.init({ duration: 1000, once: true });
+                // Fade out intro
+                introScreen.style.opacity = '0';
+                introScreen.style.visibility = 'hidden';
 
-                // Start Typed.js
-                new Typed('#hero-heading', {
-                    strings: ["Happy Friendship Day, Aditi", "A Surprise for My Best Friend"],
-                    typeSpeed: 70,
-                    backSpeed: 40,
-                    loop: false,
-                    showCursor: false,
-                    onComplete: () => {
-                        new Typed('#hero-sub', {
-                            strings: ["To the one who's seen it all—from 2nd class to becoming a Doctor. Scroll down for a trip down memory lane..."],
-                            typeSpeed: 30,
-                            showCursor: false
-                        });
-                    }
-                });
-            }, 1000);
+                // Show main content
+                mainContent.classList.remove('hidden-content');
+                mainContent.style.opacity = '1';
+                mainContent.style.visibility = 'visible';
+                
+                // Allow scrolling after intro is gone
+                document.body.style.overflow = 'auto';
+            }, 2000);
         });
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = (Math.random() * 100 + (window.innerWidth / 2 - 50)) + 'px';
+            heart.style.top = (window.innerHeight / 2) + 'px';
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 1000);
+        }
     </script>
 </body>
 </html>
