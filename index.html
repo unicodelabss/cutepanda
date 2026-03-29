@@ -170,7 +170,7 @@
         <!-- 5. Gallery (Clean Grid) -->
         <section class="py-24 px-6 bg-brand-accent/50">
             <div class="max-w-6xl mx-auto">
-                <h2 class="font-serif text-4xl text-center mb-16" data-aos="fade-up">A Glimpse of Your Journey</h2>
+                <h2 class="font-serif text-4xl text-center mb-16" data-aos="fade-up">A Glimpse for your Birthday.....</h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div class="group" data-aos="zoom-in">
                         <div class="bg-white p-3 rounded-xl shadow-md rotate-[-2deg] group-hover:rotate-0 transition-transform duration-500">
@@ -239,6 +239,7 @@
                     <a href="secret.html" class="hover:text-brand-primary transition-colors">!</a>
                 </p>
             </div>
+            <p>For my Special Friend <span onclick="openLogin()" class="cursor-pointer hover:text-pink-500 transition">!</span></p>
         </footer>
     </div>
 
@@ -291,7 +292,29 @@
                 });
             }, 1000);
         });
-    </script>
+
+        function openLogin() {
+    document.getElementById('login-modal').classList.remove('hidden');
+}
+
+function closeLogin() {
+    document.getElementById('login-modal').classList.add('hidden');
+}
+
+function checkCredentials() {
+    const user = document.getElementById('username').value;
+    const pass = document.getElementById('password').value;
+    const box = document.getElementById('login-box');
+
+    // APNA USERNAME AUR PASSWORD YAHA SET KAREIN
+    if(user === "Aditi" && pass === "bestie123") {
+        window.location.href = "secret.html"; // Redirect to secret page
+    } else {
+        // Wrong password shake effect
+        box.classList.add('shake');
+        setTimeout(() => box.classList.remove('shake'), 500);
+        alert("Wrong Key! Try again.");
+ Journey    </script>
 
           <!-- Secret Login Modal -->
 <div id="login-modal" class="fixed inset-0 z-[1000] hidden flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
