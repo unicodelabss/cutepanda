@@ -293,28 +293,8 @@
             }, 1000);
         });
 
-        function openLogin() {
-    document.getElementById('login-modal').classList.remove('hidden');
-}
-
-function closeLogin() {
-    document.getElementById('login-modal').classList.add('hidden');
-}
-
-function checkCredentials() {
-    const user = document.getElementById('username').value;
-    const pass = document.getElementById('password').value;
-    const box = document.getElementById('login-box');
-
-    // APNA USERNAME AUR PASSWORD YAHA SET KAREIN
-    if(user === "Aditi" && pass === "bestie123") {
-        window.location.href = "secret.html"; // Redirect to secret page
-    } else {
-        // Wrong password shake effect
-        box.classList.add('shake');
-        setTimeout(() => box.classList.remove('shake'), 500);
-        alert("Wrong Key! Try again.");
- Journey    </script>
+        
+        </script>
 
           <!-- Secret Login Modal -->
 <div id="login-modal" class="fixed inset-0 z-[1000] hidden flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
