@@ -292,5 +292,17 @@
             }, 1000);
         });
     </script>
+
+          <!-- Secret Login Modal -->
+<div id="login-modal" class="fixed inset-0 z-[1000] hidden flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
+    <div id="login-box" class="bg-white p-8 rounded-3xl max-w-sm w-full shadow-2xl text-center">
+        <h3 class="text-2xl font-bold text-gray-800 mb-6">Enter Access Key 🔐</h3>
+        <input type="text" id="DATE" placeholder="पहली बार कब मिले थे?" class="w-full p-3 mb-3 border rounded-xl outline-pink-500">
+        <input type="password" id="abhinavgupt" placeholder="स्थान" class="w-full p-3 mb-6 border rounded-xl outline-pink-500">
+        <button onclick="checkCredentials()" class="w-full bg-pink-500 text-white p-3 rounded-xl font-bold hover:bg-pink-600 transition">Unlock Vault</button>
+        <button onclick="closeLogin()" class="mt-4 text-gray-400 text-sm">Close</button>
+    </div>
+</div>          
+               
 </body>
 </html>
