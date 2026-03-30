@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>एक पुरानी याद 📜</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Jaini for Typewriter Hindi & Special Elite for Vintage English -->
+    <link href="https://fonts.googleapis.com/css2?family=Jaini&family=Special+Elite&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <style>
+        body { 
+            background-color: #d7ccc8; /* Old desk color */
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* --- Old Weathered Paper Styling --- */
+        .vintage-paper {
+            background: #f4e4bc;
+            background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png'); /* Subtle paper texture */
+            position: relative;
+            padding: 60px 50px;
+            box-shadow: 
+                inset 0 0 100px rgba(0,0,0,0.1),
+                10px 10px 30px rgba(0,0,0,0.3);
+            border-radius: 2px;
+            min-height: 700px;
+            border: 1px solid #dcd1b3;
+            /* Burnt edges effect */
+            box-shadow: 0 0 10px rgba(0,0,0,0.2), inset 0 0 50px #d4a373;
+        }
+
+        .typewriter-hindi {
+            font-family: 'Jaini', cursive;
+            color: #2c2c2c;
+            line-height: 1.8;
+            letter-spacing: 1px;
+        }
+
+        .vintage-stamp {
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            width: 80px;
+            opacity: 0.6;
+            filter: sepia(1) saturate(2);
+            transform: rotate(15deg);
+        }
+
+        /* --- Login Box (Minimalist) --- */
+        #login-screen {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        #secret-content { display: none; }
+
+        /* Animation for the paper appearance */
+        .paper-roll-out {
+            animation: roll-out 1.5s ease-out forwards;
+            transform-origin: top;
+        }
+        @keyframes roll-out {
+            0% { transform: scaleY(0); opacity: 0; }
+            100% { transform: scaleY(1); opacity: 1; }
+        }
+
+        /* Key Sound Effect animation */
+        .shake { animation: shake 0.4s; }
+        @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-8px); } 75% { transform: translateX(8px); } }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4 md:p-10">
+
+    <!-- BACKGROUND MUSIC -->
+    <!-- Soundcloud/Youtube royalty free soft piano link can be used -->
+    <audio id="secret-music" loop>
+        <source src="https://www.bensound.com/bensound-music/bensound-november.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- 1. LOGIN SCREEN -->
+    <div id="login-screen" class="fixed inset-0 z-50 flex items-center justify-center p-6">
+        <div class="max-w-sm w-full bg-white p-10 rounded-lg shadow-2xl text-center">
+            <i class="fa-solid fa-envelope-open-text text-5xl text-amber-700 mb-6"></i>
+            <h1 class="text-xl font-semibold text-gray-800 mb-6">यह पत्र केवल अदिति के लिए है</h1>
+            
+            <input type="password" id="pass-key" placeholder="पासवर्ड यहाँ लिखें" 
+                class="w-full bg-gray-50 border-b-2 border-amber-700 p-3 mb-6 outline-none text-center">
+            
+            <button onclick="unlockLetter()" 
+                class="w-full bg-amber-800 text-white p-3 rounded hover:bg-amber-900 transition tracking-widest text-sm font-bold">
+                पत्र खोलें
+            </button>
+            <p id="error" class="text-red-600 text-xs mt-4 hidden">पासवर्ड सही नहीं है।</p>
+        </div>
+    </div>
+
+    <!-- 2. VINTAGE LETTER CONTENT -->
+    <div id="secret-content" class="w-full max-w-4xl paper-roll-out">
+        <div class="vintage-paper">
+            <!-- Decorative Postage Stamp -->
+            <img src="https://cdn-icons-png.flaticon.com/512/3069/3069202.png" class="vintage-stamp" alt="stamp">
+            
+            <!-- Date -->
+            <div class="text-right mb-10 font-mono text-gray-600 italic">
+                दिनांक: 2008 - 2024 (अनंत तक)
+            </div>
+
+            <!-- Main Message -->
+            <div class="typewriter-hindi text-2xl md:text-3xl">
+                <p class="mb-6">प्रिय अदिति,</p>
+                
+                <p class="mb-6">
+                    आज जब मैं पीछे मुड़कर देखता हूँ, तो वह 2nd क्लास का कमरा और हम दोनों की शरारतें एक पुरानी फिल्म की तरह आँखों के सामने आ जाती हैं। 
+                </p>
+
+                <p class="mb-6">
+                    वक्त बदल गया, शहर बदल गए, यहाँ तक कि हम भी बड़े हो गए, पर तुम्हारी वह "डॉक्टर वाली सलाह" और हमारी बेमतलब की बातों का सिलसिला आज भी वैसा ही है। 
+                </p>
+
+                <p class="mb-6">
+                    शायद ही कोई ऐसा दिन गया हो जब हमने एक-दूसरे को तंग न किया हो। तुम्हारी हँसी और वह पुरानी यादें ही हैं जो आज भी इस दोस्ती को ज़िंदा रखे हुए हैं। 
+                </p>
+
+                <p class="mb-6">
+                    यह छोटा सा पन्ना बस यह बताने के लिए है कि तुम मेरी ज़िन्दगी की सबसे पुरानी और सबसे कीमती याद हो। हमेशा ऐसी ही रहना!
+                </p>
+                
+                <br>
+                <div class="mt-12 text-right">
+                    <p>सदा तुम्हारा दोस्त,</p>
+                    <p class="text-4xl mt-2 font-['Special_Elite']">Aditi's Bestie</p>
+                </div>
+            </div>
+
+            <!-- Footer Quote -->
+            <div class="mt-20 border-t border-amber-900/20 pt-6 text-center text-sm text-amber-900/40 uppercase tracking-widest">
+                Classmates Forever Since 2008
+            </div>
+        </div>
+
+        <div class="text-center mt-12 mb-10">
+            <button onclick="location.href='index.html'" class="text-amber-900/60 hover:text-amber-900 transition text-sm">
+                <i class="fa-solid fa-arrow-left mr-2"></i> वापस मुख्य द्वार पर जाएँ
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function unlockLetter() {
+            const pass = document.getElementById('pass-key').value;
+            const login = document.getElementById('login-screen');
+            const content = document.getElementById('secret-content');
+            const music = document.getElementById('secret-music');
+            const error = document.getElementById('error');
+
+            // PASSWORD: 'bestie01'
+            if(pass === "bestie01") {
+                // Play Music
+                music.play();
+                
+                // Transition
+                login.style.display = 'none';
+                content.style.display = 'block';
+                document.body.style.backgroundColor = '#bcaaa4'; // Darker desk feel
+            } else {
+                document.querySelector('.max-w-sm').classList.add('shake');
+                error.classList.remove('hidden');
+                setTimeout(() => document.querySelector('.max-w-sm').classList.remove('shake'), 400);
+            }
+        }
+    </script>
+</body>
+</html>
