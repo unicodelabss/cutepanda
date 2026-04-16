@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>सॉरी अदिति! 🥺</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <style>
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            background: #eef2f3; 
+            overflow: hidden; 
+            transition: background 1s ease;
+        }
+        .font-hand { font-family: 'Kalam', cursive; }
+
+        /* Rain Particles */
+        .rain {
+            position: absolute;
+            width: 2px; height: 10px;
+            background: rgba(0, 0, 255, 0.2);
+            top: -10px;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            to { transform: translateY(100vh); }
+        }
+
+        /* Heart Bloom Animation */
+        .heart-bloom {
+            position: absolute;
+            color: #ff4d4d;
+            font-size: 20px;
+            animation: bloom 2s ease-out forwards;
+        }
+        @keyframes bloom {
+            0% { transform: scale(0) translateY(0); opacity: 1; }
+            100% { transform: scale(1.5) translateY(-200px); opacity: 0; }
+        }
+
+        .shake { animation: shake 0.5s; }
+        @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center relative">
+
+    <audio id="sorry-music" loop>
+        <!-- Soft background music -->
+        <source src="https://www.bensound.com/bensound-music/bensound-tenderness.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="rain-container"></div>
+
+    <!-- 1. LOGIN SCREEN -->
+    <div id="login-screen" class="z-20 w-full max-w-sm p-6">
+        <div class="bg-white/80 backdrop-blur-md p-10 rounded-[2.5rem] shadow-2xl text-center">
+            <div class="text-blue-400 text-6xl mb-6 animate-bounce">
+                <i class="fa-solid fa-cloud-showers-heavy"></i>
+            </div>
+            <h1 class="text-xl font-bold text-gray-700 mb-6">यहाँ वही आए जो मुझे माफ करना चाहता हो...</h1>
+            <input type="password" id="pass-key" placeholder="पासवर्ड (जो तुम्हें पता है)" 
+                class="w-full bg-gray-100 border-none p-4 rounded-2xl mb-6 text-center outline-none focus:ring-2 focus:ring-blue-300 transition">
+            <button onclick="unlockSorry()" 
+                class="w-full bg-blue-500 text-white p-4 rounded-2xl font-bold hover:bg-blue-600 transition shadow-lg">
+                अंदर आइए
+            </button>
+        </div>
+    </div>
+
+    <!-- 2. SORRY CONTENT -->
+    <div id="sorry-content" class="hidden z-20 w-full max-w-2xl text-center px-4">
+        <div id="card" class="bg-white/90 p-8 md:p-12 rounded-[3rem] shadow-2xl relative">
+            
+            <div id="mood-icon" class="text-7xl mb-6">🥺</div>
+            
+            <h1 class="font-hand text-4xl md:text-5xl text-gray-800 mb-6 font-bold" id="title-msg">I'm Really Sorry, Aditi!</h1>
+            
+            <p class="font-hand text-2xl text-gray-600 mb-10 leading-relaxed" id="main-msg">
+                मुझे पता है कभी-कभी मैं बहुत ज़्यादा परेशान कर देता हूँ या कोई बात बुरी लग जाती है। 
+                लेकिन सच कहूँ तो मेरा इरादा तुम्हें दुखी करने का कभी नहीं होता। <br><br>
+                क्या तुम मुझे माफ करोगी? 
+            </p>
+
+            <div id="buttons" class="flex flex-col md:flex-row gap-4 justify-center items-center">
+                <button onclick="forgive()" 
+                    class="bg-green-500 text-white px-10 py-4 rounded-full font-bold text-xl hover:scale-110 transition-transform shadow-xl">
+                    हाँ, माफ किया! ❤️
+                </button>
+                
+                <button id="no-btn" onmouseover="moveNo()" 
+                    class="bg-red-400 text-white px-10 py-4 rounded-full font-bold text-xl shadow-lg transition-all">
+                    अभी भी नाराज़ हूँ 😤
+                </button>
+            </div>
+
+            <!-- Secret Happy Message -->
+            <div id="happy-msg" class="hidden font-hand text-3xl text-pink-600 mt-6 animate-pulse">
+                You're the best! 🌸 चलो अब मुस्कुराओ!
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Create Rain Effect
+        function createRain() {
+            const container = document.getElementById('rain-container');
+            for(let i=0; i<50; i++) {
+                const rainDrop = document.createElement('div');
+                rainDrop.className = 'rain';
+                rainDrop.style.left = Math.random() * 100 + 'vw';
+                rainDrop.style.animationDuration = (Math.random() * 1 + 0.5) + 's';
+                rainDrop.style.animationDelay = Math.random() * 2 + 's';
+                container.appendChild(rainDrop);
+            }
+        }
+        createRain();
+
+        function unlockSorry() {
+            const pass = document.getElementById('pass-key').value;
+            // Password set as 'sorry'
+            if(pass === "sorry") {
+                document.getElementById('login-screen').style.display = 'none';
+                document.getElementById('sorry-content').classList.remove('hidden');
+                document.getElementById('sorry-music').play();
+            } else {
+                alert("Incorrect Key!");
+            }
+        }
+
+        // Move 'No' button away
+        function moveNo() {
+            const btn = document.getElementById('no-btn');
+            const x = Math.random() * (window.innerWidth - btn.clientWidth);
+            const y = Math.random() * (window.innerHeight - btn.clientHeight);
+            
+            btn.style.position = 'fixed';
+            btn.style.left = x + 'px';
+            btn.style.top = y + 'px';
+        }
+
+        // When "Yes" is clicked
+        function forgive() {
+            document.body.style.background = "#fff0f6"; // Light Pink
+            document.getElementById('rain-container').innerHTML = ''; // Stop rain
+            document.getElementById('mood-icon').innerText = "💖";
+            document.getElementById('title-msg').innerText = "Thank Youuu! ✨";
+            document.getElementById('main-msg').innerText = "दुनिया की सबसे अच्छी दोस्त! अब हम फिर से कूल हैं। 😋";
+            document.getElementById('buttons').classList.add('hidden');
+            document.getElementById('happy-msg').classList.remove('hidden');
+            
+            // Flower bloom effect
+            for(let i=0; i<30; i++) {
+                setTimeout(createHeart, i * 100);
+            }
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart-bloom';
+            heart.innerHTML = '🌸';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.bottom = '0';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 2000);
+        }
+    </script>
+</body>
+</html>
