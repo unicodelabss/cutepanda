@@ -1,53 +1,78 @@
-<!-- Safe Journey Section -->
-<section class="py-20 px-6 bg-gradient-to-b from-white to-pink-50 overflow-hidden relative">
-    <!-- Animated Paper Plane -->
-    <div class="paper-plane-container absolute top-10 w-full pointer-events-none">
-        <i class="fa-solid fa-paper-plane text-pink-300 text-2xl animate-travel"></i>
-    </div>
+<!-- Safe Journey: Premium Farewell Section -->
+<section class="relative py-32 px-6 overflow-hidden bg-[#fafafa]">
+    <!-- Decorative Background Element -->
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-gradient-to-b from-pink-100/40 to-transparent rounded-full blur-3xl opacity-50"></div>
 
-    <div class="max-w-4xl mx-auto text-center" data-aos="zoom-in">
-        <div class="inline-block p-4 bg-white rounded-full shadow-lg mb-6">
-            <i class="fa-solid fa-train-subway text-3xl text-pink-500"></i>
-        </div>
-        
-        <h2 class="font-serif text-4xl md:text-5xl text-gray-800 mb-6">परसों तुम जा रही हो... 🚂</h2>
-        
-        <div class="glass-card p-8 md:p-12 rounded-[2rem] border-2 border-dashed border-pink-200">
-            <p class="text-xl md:text-2xl text-gray-600 font-light italic leading-relaxed">
-                "पता है परसों तुम घर जा रही हो। घर पहुँच कर अपनों से मिलना, ढेर सारी खुशियाँ मनाना, पर इस पुराने दोस्त को भूल मत जाना। <br><br>
-                रास्ते में अपना ख्याल रखना और पहुँचते ही एक मैसेज ज़रूर कर देना। तुम्हारी कमी खलेगी, पर इंतज़ार रहेगा फिर से मिलने का!"
-            </p>
+    <div class="max-w-5xl mx-auto relative z-10">
+        <div class="flex flex-col items-center text-center">
             
-            <div class="mt-10 flex flex-col md:flex-row items-center justify-center gap-6">
-                <div class="flex items-center gap-2 text-pink-600 font-semibold">
-                    <i class="fa-solid fa-heart pulse"></i> Safe Journey, Aditi!
+            <!-- Minimal Icon -->
+            <div class="mb-10" data-aos="fade-down">
+                <div class="relative inline-block">
+                    <div class="absolute inset-0 bg-pink-200 blur-2xl rounded-full opacity-30 animate-pulse"></div>
+                    <i class="fa-solid fa-suitcase-rolling text-4xl text-pink-400 relative"></i>
                 </div>
-                <div class="text-gray-400 hidden md:block">|</div>
-                <div class="text-gray-500 text-sm tracking-widest uppercase">
-                    अलविदा नहीं, फिर मिलेंगे! ✨
+            </div>
+
+            <!-- Heading with Premium Serif Font -->
+            <h2 class="font-serif text-5xl md:text-7xl text-slate-800 mb-8 leading-tight" data-aos="fade-up">
+                परसों तुम जा रही हो... <br>
+                <span class="text-pink-500 italic">पर यादें यहीं रहेंगी।</span>
+            </h2>
+
+            <!-- The Farewell Card (Glassmorphism) -->
+            <div class="w-full max-w-3xl mt-10 p-1 md:p-px bg-gradient-to-br from-white to-pink-100 rounded-[2.5rem] shadow-2xl shadow-pink-100/50" data-aos="zoom-in" data-aos-delay="200">
+                <div class="bg-white/80 backdrop-blur-xl rounded-[2.4rem] p-10 md:p-16 border border-white/50">
+                    
+                    <div class="font-light text-xl md:text-2xl text-slate-600 leading-relaxed space-y-6">
+                        <p>
+                            अदिति, घर जाने की ख़ुशी तो है, पर यहाँ तुम्हारी कमी ज़रूर खलेगी। उन गलियारों में अब वह शोर नहीं होगा, जो तुम्हारी बातों से होता था। 
+                        </p>
+                        <p class="font-medium text-slate-800">
+                            पहुँच कर अपनों से मिलना, घर का खाना खाना और ढेर सारी यादें समेटना। पर याद रहे, यह सफ़र सिर्फ घर तक का है, हमसे दूर होने का नहीं।
+                        </p>
+                    </div>
+
+                    <!-- Journey Status/Badge -->
+                    <div class="mt-16 flex flex-wrap items-center justify-center gap-8 border-t border-slate-100 pt-10">
+                        <div class="flex items-center gap-3">
+                            <span class="w-2 h-2 bg-green-400 rounded-full animate-ping"></span>
+                            <span class="text-sm font-semibold tracking-widest text-slate-400 uppercase">Traveling Soon</span>
+                        </div>
+                        <div class="h-10 w-px bg-slate-200 hidden md:block"></div>
+                        <div class="flex items-center gap-4 text-pink-600 font-medium">
+                            <i class="fa-solid fa-heart-pulse"></i>
+                            Safe Journey, Aditi!
+                        </div>
+                    </div>
                 </div>
+            </div>
+
+            <!-- Floating Paper Plane (Minimalist) -->
+            <div class="mt-12 opacity-30">
+                <svg width="60" height="60" viewBox="0 0 24 24" fill="none" class="animate-float-slow">
+                    <path d="M22 2L11 13" stroke="#EC4899" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="#EC4899" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
             </div>
         </div>
     </div>
 </section>
 
 <style>
-    /* Paper Plane Animation */
-    @keyframes travel {
-        0% { transform: translateX(-10%) translateY(0) rotate(0deg); opacity: 0; }
-        10% { opacity: 1; }
-        90% { opacity: 1; }
-        100% { transform: translateX(110vw) translateY(-50px) rotate(10deg); opacity: 0; }
+    /* Premium Smooth Animations */
+    @keyframes float-slow {
+        0%, 100% { transform: translateY(0) rotate(0deg); }
+        50% { transform: translateY(-20px) rotate(5deg); }
     }
-    .animate-travel {
-        display: inline-block;
-        animation: travel 8s linear infinite;
+    .animate-float-slow {
+        animation: float-slow 6s ease-in-out infinite;
     }
-    .pulse {
-        animation: pulse-heart 1.5s infinite;
-    }
-    @keyframes pulse-heart {
-        0%, 100% { transform: scale(1); }
-        50% { transform: scale(1.2); }
+
+    /* Custom Serif for that "Vogue/Luxury" feel */
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+    
+    .font-serif {
+        font-family: 'Playfair Display', serif;
     }
 </style>
