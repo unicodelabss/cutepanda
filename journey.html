@@ -3,151 +3,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Safe Journey Aditi! ❤️✨</title>
+    <title>Safe Journey Aditi! ✨❤️</title>
     
     <!-- Tailwind & Fonts -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Poppins:wght@300;400;600&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Poppins:wght@300;400;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
     <style>
+        /* Smooth Scrolling & Prevent Glitch */
+        html, body {
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            width: 100%;
+        }
+        
         body { 
             font-family: 'Poppins', sans-serif; 
-            /* Romantic Red/Sunset Gradient */
-            background: linear-gradient(135deg, #4c0519 0%, #9f1239 50%, #881337 100%);
-            color: #fff1f2;
-            overflow-x: hidden;
-            min-height: 100vh;
+            /* Soft Aesthetic Gradient */
+            background: linear-gradient(135deg, #fff5f5 0%, #fed7e2 100%);
+            color: #4a5568;
         }
+
         .font-hand { font-family: 'Kalam', cursive; }
-        .font-serif { font-family: 'Playfair Display', serif; }
+        .font-title { font-family: 'Dancing Script', cursive; }
         
-        /* Floating Hearts Animation */
-        .heart {
-            position: absolute;
-            color: rgba(255, 255, 255, 0.2);
-            animation: floatUp linear infinite;
+        /* Fixed Background Container for Hearts (Prevents Scroll Glitch) */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
             z-index: 0;
         }
+
+        .heart {
+            position: absolute;
+            color: #f687b3;
+            opacity: 0.4;
+            animation: floatUp 6s linear infinite;
+        }
+
         @keyframes floatUp {
-            from { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-            50% { opacity: 0.5; }
-            to { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+            0% { transform: translateY(110vh) rotate(0deg) scale(1); opacity: 0; }
+            20% { opacity: 0.6; }
+            100% { transform: translateY(-10vh) rotate(360deg) scale(1.5); opacity: 0; }
         }
 
-        /* Glassmorphism Card */
-        .glass {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        /* Glassmorphism - Light & Airy */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 15px 35px rgba(251, 182, 206, 0.3);
         }
 
-        /* Custom Train Path */
-        .train-line {
+        /* Train Path */
+        .track-line {
             height: 2px;
-            background: rgba(255, 255, 255, 0.3);
+            background: #cbd5e0;
             position: relative;
+            overflow: hidden;
         }
-        .train-line::after {
+        .track-line::after {
             content: '';
             position: absolute;
+            left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, #fb7185, transparent);
-            animation: line-glow 3s infinite;
+            background: linear-gradient(90deg, transparent, #f687b3, transparent);
+            animation: move-light 3s infinite linear;
         }
-        @keyframes line-glow {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-
-        .heart-pulse {
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); text-shadow: 0 0 20px rgba(251, 113, 133, 0.8); }
+        @keyframes move-light {
+            to { left: 100%; }
         }
     </style>
 </head>
-<body>
+<body class="antialiased">
 
-    <!-- Background Hearts -->
-    <div id="heart-container" class="fixed inset-0 pointer-events-none"></div>
+    <!-- Fixed Background for Hearts -->
+    <div id="bg-canvas"></div>
 
-    <!-- Main Content -->
-    <div class="relative z-10 min-h-screen flex flex-col items-center py-12 px-6">
+    <div class="relative z-10 w-full min-h-screen flex flex-col items-center py-10 px-4">
         
-        <!-- Header -->
-        <div class="text-center mb-16" data-aos="fade-down">
-            <div class="inline-block bg-rose-500/20 p-6 rounded-full border border-rose-400/30 mb-6 shadow-inner">
-                <i class="fa-solid fa-heart text-5xl text-rose-400 heart-pulse"></i>
+        <!-- Header Section -->
+        <div class="text-center mb-12" data-aos="fade-down">
+            <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-md border-2 border-rose-100">
+                <i class="fa-solid fa-heart text-rose-400 text-3xl animate-pulse"></i>
             </div>
-            <h1 class="text-4xl md:text-7xl font-serif italic text-white mb-2">Safe Journey, Aditi!</h1>
-            <p class="text-rose-300 tracking-[0.4em] uppercase text-xs font-bold">Leaving a piece of heart behind...</p>
+            <h1 class="font-title text-5xl md:text-7xl text-rose-500 mb-2">Safe Journey, Aditi!</h1>
+            <p class="text-rose-400 tracking-[0.3em] uppercase text-[10px] font-bold">Ghar ja rahi ho, par dil yahin hai...</p>
         </div>
 
-        <!-- The Emotional Letter Card -->
-        <div class="max-w-4xl w-full glass rounded-[3rem] p-10 md:p-16 mb-16" data-aos="zoom-in">
-            <h2 class="font-hand text-4xl md:text-5xl text-rose-300 mb-10 border-b border-rose-300/20 pb-6">
-                परसों तुम जा रही हो... ❤️
-            </h2>
-            <div class="font-hand text-3xl md:text-4xl text-rose-50 leading-relaxed space-y-8">
-                <p>"जाना तो सबको होता है, पर जब तुम जैसे दोस्त जाते हैं, तो सब कुछ थोड़ा फीका लगने लगता है।"</p>
-                
-                <p>"परसों जब तुम अपने सफर पर निकलोगी, तो बस इतना याद रखना कि यहाँ कोई है जो तुम्हें बहुत याद करेगा। घर पहुँचकर अपनों के प्यार में डूब जाना, पर उन यादों को भी सहेज कर रखना जो हमने यहाँ बनाई हैं।"</p>
-                
-                <p class="text-rose-400 italic">"रास्ता लंबा है पर दिल की दुआएं साथ हैं। पहुँचते ही एक प्यारा सा मैसेज कर देना... मेरा दिल वहीं अटका रहेगा।"</p>
+        <!-- Main Letter Container -->
+        <div class="max-w-3xl w-full glass-card rounded-[2.5rem] p-8 md:p-14 mb-10" data-aos="zoom-in">
+            <div class="flex justify-between items-center mb-8 border-b border-rose-100 pb-4">
+                <h2 class="font-hand text-3xl text-rose-600">परसों तुम जा रही हो... ❤️</h2>
+                <i class="fa-solid fa-ticket text-rose-200 text-2xl rotate-12"></i>
             </div>
             
-            <div class="mt-16">
-                <div class="train-line w-full flex items-center justify-between">
-                    <div class="w-4 h-4 bg-rose-400 rounded-full shadow-[0_0_15px_rgba(251,113,133,0.8)]"></div>
-                    <i class="fa-solid fa-train-subway text-rose-100 text-3xl -mt-2 animate-bounce"></i>
-                    <div class="w-4 h-4 bg-rose-400 rounded-full shadow-[0_0_15px_rgba(251,113,133,0.8)]"></div>
-                </div>
-                <div class="flex justify-between text-[11px] text-rose-300/60 mt-4 uppercase tracking-[0.2em] font-bold">
-                    <span>From My Heart</span>
-                    <span>To Your Home</span>
+            <div class="font-hand text-2xl md:text-3xl text-slate-700 leading-relaxed space-y-6">
+                <p>अदिति, जब तुम परसों इस शहर से अपने घर के लिए निकलोगी, तो पीछे एक खालीपन रह जाएगा। </p>
+                
+                <p>वो कॉलेज/स्कूल की मस्ती और तुम्हारी वो ढेर सारी बातें... सबको बहुत याद किया जाएगा। पर खुशी इस बात की है कि तुम अपने घर जा रही हो, अपनों के पास।</p>
+                
+                <p class="text-rose-500 italic">"सफर का आनंद लेना, खिड़की वाली सीट पर बैठकर मुस्कुराना और हाँ... पहुँचते ही बता देना। क्योंकि तुम्हारे बिना यहाँ सब कुछ थोड़ा अधूरा लगेगा।"</p>
+            </div>
+
+            <!-- Visual Journey Track -->
+            <div class="mt-12">
+                <div class="track-line rounded-full"></div>
+                <div class="flex justify-between items-center -mt-4 px-2">
+                    <div class="flex flex-col items-center">
+                        <i class="fa-solid fa-location-dot text-rose-400"></i>
+                        <span class="text-[9px] font-bold mt-1 uppercase text-slate-400">यहाँ</span>
+                    </div>
+                    <i class="fa-solid fa-train-subway text-rose-500 text-2xl animate-bounce"></i>
+                    <div class="flex flex-col items-center">
+                        <i class="fa-solid fa-house-chimney text-rose-400"></i>
+                        <span class="text-[9px] font-bold mt-1 uppercase text-slate-400">घर</span>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- Checklist Section -->
-        <div class="max-w-2xl w-full mb-16" data-aos="fade-up">
-            <h3 class="text-center font-bold text-rose-200 mb-8 flex items-center justify-center gap-3 text-xl">
-                <i class="fa-solid fa-suitcase text-rose-400"></i> सफर की तैयारी
-            </h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="glass p-5 rounded-2xl flex items-center gap-4 hover:bg-white/10 transition cursor-pointer">
-                    <input type="checkbox" checked class="w-6 h-6 accent-rose-500">
-                    <span class="text-rose-100">फोन चार्जर (सबसे ज़रूरी!)</span>
+        <!-- Fun Reminder Section -->
+        <div class="max-w-xl w-full grid grid-cols-1 md:grid-cols-2 gap-4 mb-12" data-aos="fade-up">
+            <div class="glass-card p-5 rounded-2xl flex items-center gap-4">
+                <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm">
+                    <i class="fa-solid fa-battery-three-quarters text-green-400"></i>
                 </div>
-                <div class="glass p-5 rounded-2xl flex items-center gap-4 hover:bg-white/10 transition cursor-pointer">
-                    <input type="checkbox" class="w-6 h-6 accent-rose-500">
-                    <span class="text-rose-100">रास्ते के स्नैक्स 🍿</span>
+                <span class="text-sm font-semibold">Phone Fully Charged?</span>
+            </div>
+            <div class="glass-card p-5 rounded-2xl flex items-center gap-4">
+                <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm">
+                    <i class="fa-solid fa-headphones text-blue-400"></i>
                 </div>
-                <div class="glass p-5 rounded-2xl flex items-center gap-4 hover:bg-white/10 transition cursor-pointer">
-                    <input type="checkbox" class="w-6 h-6 accent-rose-500">
-                    <span class="text-rose-100">Playlist (मेरी यादों वाली 🎧)</span>
-                </div>
-                <div class="glass p-5 rounded-2xl flex items-center gap-4 hover:bg-white/10 transition cursor-pointer">
-                    <input type="checkbox" class="w-6 h-6 accent-rose-500">
-                    <span class="text-rose-100">एक प्यारी सी मुस्कान 😊</span>
-                </div>
+                <span class="text-sm font-semibold">Favorite Playlist?</span>
             </div>
         </div>
 
-        <!-- Footer -->
-        <div class="text-center mt-8 pb-12" data-aos="fade-up">
-            <div class="bg-rose-400/20 px-8 py-4 rounded-full border border-rose-400/30 inline-block mb-10">
-                 <p class="text-rose-200 font-hand text-2xl italic">"अलविदा नहीं, बस एक छोटा सा ब्रेक..."</p>
-            </div>
-            <br>
-            <a href="index.html" class="inline-flex items-center gap-2 text-rose-300 hover:text-white transition-colors text-sm uppercase tracking-widest font-semibold group">
-               <i class="fa-solid fa-arrow-left group-hover:-translate-x-2 transition-transform"></i> Back to Our Story
+        <!-- Footer Back Link -->
+        <div class="text-center" data-aos="fade-up">
+            <p class="font-hand text-xl text-rose-400 mb-6 italic">"अलविदा नहीं, बस फिर से मिलने का वादा..."</p>
+            <a href="index.html" class="inline-flex items-center gap-2 text-slate-400 hover:text-rose-500 transition-colors uppercase tracking-widest text-[10px] font-bold group">
+                <i class="fa-solid fa-arrow-left group-hover:-translate-x-1 transition-transform"></i> Back to Main Story
             </a>
         </div>
     </div>
@@ -155,38 +158,34 @@
     <!-- Scripts -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-        AOS.init({ duration: 1200, once: true });
+        AOS.init({ duration: 1000, once: true });
 
-        // Generate Random Hearts
-        const container = document.getElementById('heart-container');
+        // Optimized Heart Generator (Prevents Memory Leak & Glitch)
+        const canvas = document.getElementById('bg-canvas');
         function createHeart() {
-            const heart = document.createElement('i');
-            heart.className = `fa-solid fa-heart heart`;
-            const size = Math.random() * 20 + 10;
-            heart.style.fontSize = `${size}px`;
-            heart.style.left = `${Math.random() * 100}vw`;
-            heart.style.animationDuration = `${Math.random() * 5 + 5}s`;
-            heart.style.opacity = Math.random() * 0.3;
-            container.appendChild(heart);
+            // Sirf 15 hearts ek waqt par screen pe rahein taaki lag na ho
+            if (canvas.childElementCount > 15) return;
 
+            const heart = document.createElement('i');
+            heart.className = 'fa-solid fa-heart heart';
+            
+            const size = Math.random() * 15 + 10;
+            const left = Math.random() * 100;
+            const duration = Math.random() * 3 + 4;
+
+            heart.style.left = left + 'vw';
+            heart.style.fontSize = size + 'px';
+            heart.style.animationDuration = duration + 's';
+
+            canvas.appendChild(heart);
+
+            // Remove heart after animation ends
             setTimeout(() => {
                 heart.remove();
-            }, 10000);
+            }, duration * 1000);
         }
-        setInterval(createHeart, 400);
 
-        // Fun sound or alert for checklist
-        document.querySelectorAll('input[type="checkbox"]').forEach(box => {
-            box.addEventListener('change', () => {
-                if(box.checked) {
-                    const msg = document.createElement('div');
-                    msg.className = 'fixed top-20 left-1/2 -translate-x-1/2 bg-rose-500 text-white px-6 py-2 rounded-full shadow-lg z-[100] animate-bounce';
-                    msg.innerText = 'Perfect! ❤️';
-                    document.body.appendChild(msg);
-                    setTimeout(() => msg.remove(), 2000);
-                }
-            });
-        });
+        setInterval(createHeart, 600);
     </script>
 </body>
 </html>
