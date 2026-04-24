@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safe Journey Aditi! ✨❤️</title>
+    
+    <!-- Tailwind & Fonts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Poppins:wght@300;400;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <style>
+        /* Smooth Scrolling & Prevent Glitch */
+        html, body {
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            background: linear-gradient(135deg, #fff5f5 0%, #fed7e2 100%);
+            color: #4a5568;
+            min-height: 100vh;
+        }
+
+        .font-hand { font-family: 'Kalam', cursive; }
+        .font-title { font-family: 'Dancing Script', cursive; }
+        
+        /* Fixed Background for Hearts */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .heart {
+            position: absolute;
+            color: #f687b3;
+            opacity: 0.4;
+            animation: floatUp 6s linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(110vh) rotate(0deg) scale(1); opacity: 0; }
+            20% { opacity: 0.6; }
+            100% { transform: translateY(-10vh) rotate(360deg) scale(1.5); opacity: 0; }
+        }
+
+        /* Glassmorphism Styling */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 15px 35px rgba(251, 182, 206, 0.3);
+        }
+
+        /* Train Track Path */
+        .track-line {
+            height: 2px;
+            background: #cbd5e0;
+            position: relative;
+            overflow: hidden;
+        }
+        .track-line::after {
+            content: '';
+            position: absolute;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, #f687b3, transparent);
+            animation: move-light 3s infinite linear;
+        }
+        @keyframes move-light { to { left: 100%; } }
+
+        /* Shake animation for wrong password */
+        .shake { animation: shake 0.4s; }
+        @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-8px); } 75% { transform: translateX(8px); } }
+
+        #main-content { display: none; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Background Music -->
+    <audio id="journey-music" loop>
+        <!-- Replace with your audio file path -->
+        <source src="your-song.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Fixed Background for Hearts -->
+    <div id="bg-canvas"></div>
+
+    <!-- 1. ENCRYPTION / LOGIN SCREEN -->
+    <div id="login-screen" class="fixed inset-0 z-[2000] flex items-center justify-center bg-[#fff5f5] p-6 transition-opacity duration-500">
+        <div class="glass-card p-10 rounded-[2.5rem] max-w-sm w-full text-center border-t-4 border-rose-300">
+            <div class="w-20 h-20 bg-rose-50 rounded-full flex items-center justify-center mx-auto mb-6">
+                <i class="fa-solid fa-plane-departure text-rose-400 text-3xl"></i>
+            </div>
+            <h2 class="font-title text-4xl text-rose-500 mb-2">Boarding Pass</h2>
+            <p class="text-slate-400 text-[10px] uppercase tracking-[0.2em] mb-8">Access Restricted to Aditi</p>
+            
+            <input type="password" id="pass-code" placeholder="Enter Secret Code" 
+                class="w-full p-4 bg-white/50 border border-rose-100 rounded-2xl mb-4 text-center outline-none focus:ring-2 focus:ring-rose-200 transition-all">
+            
+            <button onclick="unlockJourney()" class="w-full bg-rose-400 text-white p-4 rounded-2xl font-bold shadow-lg hover:bg-rose-500 transition-all active:scale-95">
+                UNLOCK JOURNEY
+            </button>
+            <p id="error-msg" class="text-rose-400 text-xs mt-4 hidden italic">Galat Code! (Hint: home)</p>
+        </div>
+    </div>
+
+    <!-- 2. MAIN CONTENT (Initially Hidden) -->
+    <div id="main-content" class="relative z-10 w-full min-h-screen flex flex-col items-center py-10 px-4">
+        
+        <!-- Header -->
+        <div class="text-center mb-12" data-aos="fade-down">
+            <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-md border-2 border-rose-100">
+                <i class="fa-solid fa-heart text-rose-400 text-3xl animate-pulse"></i>
+            </div>
+            <h1 class="font-title text-6xl md:text-7xl text-rose-500 mb-2">Safe Journey, Aditi!</h1>
+            <p class="text-rose-400 tracking-[0.3em] uppercase text-[10px] font-bold">Leaving a piece of heart behind...</p>
+        </div>
+
+        <!-- The Emotional Letter -->
+        <div class="max-w-3xl w-full glass-card rounded-[2.5rem] p-8 md:p-14 mb-10" data-aos="zoom-in">
+            <div class="flex justify-between items-center mb-8 border-b border-rose-100 pb-4">
+                <h2 class="font-hand text-3xl text-rose-600">परसों तुम जा रही हो... ❤️</h2>
+                <i class="fa-solid fa-ticket text-rose-200 text-2xl rotate-12"></i>
+            </div>
+            
+            <div class="font-hand text-2xl md:text-3xl text-slate-700 leading-relaxed space-y-6">
+                <p>अदिति, जब तुम परसों इस शहर से अपने घर के लिए निकलोगी, तो पीछे एक खालीपन रह जाएगा।</p>
+                
+                <p>वो कॉलेज/स्कूल की मस्ती और तुम्हारी वो ढेर सारी बातें... सबको बहुत याद किया जाएगा। पर खुशी इस बात की है कि तुम अपने घर जा रही हो, अपनों के पास।</p>
+                
+                <p class="text-rose-500 italic">"सफर का आनंद लेना, खिड़की वाली सीट पर बैठकर मुस्कुराना और हाँ... पहुँचते ही बता देना। क्योंकि तुम्हारे बिना यहाँ सब कुछ थोड़ा अधूरा लगेगा।"</p>
+            </div>
+
+            <!-- Visual Journey Track -->
+            <div class="mt-12">
+                <div class="track-line rounded-full"></div>
+                <div class="flex justify-between items-center -mt-4 px-2">
+                    <div class="flex flex-col items-center">
+                        <i class="fa-solid fa-location-dot text-rose-400"></i>
+                        <span class="text-[9px] font-bold mt-1 uppercase text-slate-400">यहाँ</span>
+                    </div>
+                    <i class="fa-solid fa-train-subway text-rose-500 text-2xl animate-bounce"></i>
+                    <div class="flex flex-col items-center">
+                        <i class="fa-solid fa-house-chimney text-rose-400"></i>
+                        <span class="text-[9px] font-bold mt-1 uppercase text-slate-400">घर</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fun Reminder Checklist -->
+        <div class="max-w-xl w-full grid grid-cols-1 md:grid-cols-2 gap-4 mb-12" data-aos="fade-up">
+            <div class="glass-card p-5 rounded-2xl flex items-center gap-4">
+                <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm">
+                    <i class="fa-solid fa-battery-three-quarters text-green-400"></i>
+                </div>
+                <span class="text-sm font-semibold">Phone Charged?</span>
+            </div>
+            <div class="glass-card p-5 rounded-2xl flex items-center gap-4">
+                <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm">
+                    <i class="fa-solid fa-headphones text-blue-400"></i>
+                </div>
+                <span class="text-sm font-semibold">Playlist Ready?</span>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="text-center pb-10" data-aos="fade-up">
+            <p class="font-hand text-xl text-rose-400 mb-6 italic">"अलविदा नहीं, बस फिर से मिलने का वादा..."</p>
+            <a href="index.html" class="inline-flex items-center gap-2 text-slate-400 hover:text-rose-500 transition-colors uppercase tracking-widest text-[10px] font-bold group">
+                <i class="fa-solid fa-arrow-left group-hover:-translate-x-1 transition-transform"></i> Back to Home
+            </a>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        // Password Verification & Music Trigger
+        function unlockJourney() {
+            const pass = document.getElementById('pass-code').value;
+            const login = document.getElementById('login-screen');
+            const main = document.getElementById('main-content');
+            const music = document.getElementById('journey-music');
+            const error = document.getElementById('error-msg');
+
+            // PASSWORD: home (Aap isse badal sakte hain)
+            if(pass.toLowerCase() === "home") {
+                // Play Music (User interaction bypasses browser block)
+                music.play();
+                
+                // Transition
+                login.style.opacity = '0';
+                setTimeout(() => {
+                    login.style.display = 'none';
+                    main.style.display = 'flex';
+                    
+                    // Initialize AOS after content is visible
+                    AOS.init({ duration: 1000, once: true });
+                    
+                    // Start Heart Generator
+                    setInterval(createHeart, 600);
+                }, 500);
+            } else {
+                // Shake Effect for wrong password
+                document.querySelector('#login-screen .glass-card').classList.add('shake');
+                error.classList.remove('hidden');
+                setTimeout(() => {
+                    document.querySelector('#login-screen .glass-card').classList.remove('shake');
+                }, 400);
+            }
+        }
+
+        // Optimized Heart Generator
+        const canvas = document.getElementById('bg-canvas');
+        function createHeart() {
+            if (canvas.childElementCount > 15) return;
+
+            const heart = document.createElement('i');
+            heart.className = 'fa-solid fa-heart heart';
+            const size = Math.random() * 15 + 10;
+            const left = Math.random() * 100;
+            const duration = Math.random() * 3 + 4;
+
+            heart.style.left = left + 'vw';
+            heart.style.fontSize = size + 'px';
+            heart.style.animationDuration = duration + 's';
+
+            canvas.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, duration * 1000);
+        }
+    </script>
+</body>
+</html>
