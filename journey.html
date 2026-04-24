@@ -3,160 +3,187 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Safe Journey Aditi! 🚂✨</title>
+    <title>Safe Journey Aditi! ❤️✨</title>
     
     <!-- Tailwind & Fonts -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Poppins:wght@300;400;600&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
     <style>
-        body { font-family: 'Poppins', sans-serif; background: #f0f9ff; overflow-x: hidden; }
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            /* Romantic Red/Sunset Gradient */
+            background: linear-gradient(135deg, #4c0519 0%, #9f1239 50%, #881337 100%);
+            color: #fff1f2;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
         .font-hand { font-family: 'Kalam', cursive; }
+        .font-serif { font-family: 'Playfair Display', serif; }
         
-        /* Cloud Animation */
-        .cloud {
+        /* Floating Hearts Animation */
+        .heart {
             position: absolute;
-            background: white;
-            border-radius: 50px;
-            opacity: 0.8;
-            filter: blur(10px);
-            animation: moveClouds linear infinite;
+            color: rgba(255, 255, 255, 0.2);
+            animation: floatUp linear infinite;
+            z-index: 0;
         }
-        @keyframes moveClouds {
-            from { left: -200px; }
-            to { left: 100vw; }
+        @keyframes floatUp {
+            from { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            50% { opacity: 0.5; }
+            to { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
         }
 
-        /* Plane Path */
-        .plane-path {
-            position: absolute;
-            top: 20%;
-            left: -10%;
-            animation: fly 12s linear infinite;
-            z-index: 10;
-        }
-        @keyframes fly {
-            0% { transform: translate(0, 0) rotate(0deg); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translate(120vw, -100px) rotate(10deg); opacity: 0; }
-        }
-
+        /* Glassmorphism Card */
         .glass {
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
         }
 
-        .train-track {
-            height: 4px;
-            background: repeating-linear-gradient(90deg, #94a3b8, #94a3b8 10px, transparent 10px, transparent 20px);
+        /* Custom Train Path */
+        .train-line {
+            height: 2px;
+            background: rgba(255, 255, 255, 0.3);
+            position: relative;
+        }
+        .train-line::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, #fb7185, transparent);
+            animation: line-glow 3s infinite;
+        }
+        @keyframes line-glow {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .heart-pulse {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); text-shadow: 0 0 20px rgba(251, 113, 133, 0.8); }
         }
     </style>
 </head>
-<body class="text-slate-800">
+<body>
 
-    <!-- Background Elements -->
-    <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
-        <div class="cloud w-32 h-12 top-10" style="animation-duration: 25s;"></div>
-        <div class="cloud w-48 h-16 top-40" style="animation-duration: 35s; animation-delay: -10s;"></div>
-        <div class="cloud w-40 h-14 top-80" style="animation-duration: 30s; animation-delay: -5s;"></div>
-    </div>
-
-    <!-- Paper Plane -->
-    <div class="plane-path">
-        <i class="fa-solid fa-paper-plane text-sky-400 text-3xl"></i>
-    </div>
+    <!-- Background Hearts -->
+    <div id="heart-container" class="fixed inset-0 pointer-events-none"></div>
 
     <!-- Main Content -->
     <div class="relative z-10 min-h-screen flex flex-col items-center py-12 px-6">
         
         <!-- Header -->
         <div class="text-center mb-16" data-aos="fade-down">
-            <div class="inline-block bg-white p-4 rounded-full shadow-xl mb-6">
-                <i class="fa-solid fa-suitcase-rolling text-4xl text-sky-500 animate-bounce"></i>
+            <div class="inline-block bg-rose-500/20 p-6 rounded-full border border-rose-400/30 mb-6 shadow-inner">
+                <i class="fa-solid fa-heart text-5xl text-rose-400 heart-pulse"></i>
             </div>
-            <h1 class="text-4xl md:text-6xl font-bold text-sky-900 mb-2">Safe Journey, Aditi!</h1>
-            <p class="text-sky-600 tracking-widest uppercase text-sm font-semibold">Home is calling... 🏡</p>
+            <h1 class="text-4xl md:text-7xl font-serif italic text-white mb-2">Safe Journey, Aditi!</h1>
+            <p class="text-rose-300 tracking-[0.4em] uppercase text-xs font-bold">Leaving a piece of heart behind...</p>
         </div>
 
-        <!-- The Emotional Card -->
-        <div class="max-w-3xl w-full glass rounded-[3rem] p-8 md:p-12 shadow-2xl mb-12" data-aos="zoom-in">
-            <h2 class="font-hand text-3xl md:text-4xl text-sky-800 mb-8 border-b-2 border-sky-100 pb-4">
-                परसों तुम जा रही हो...
+        <!-- The Emotional Letter Card -->
+        <div class="max-w-4xl w-full glass rounded-[3rem] p-10 md:p-16 mb-16" data-aos="zoom-in">
+            <h2 class="font-hand text-4xl md:text-5xl text-rose-300 mb-10 border-b border-rose-300/20 pb-6">
+                परसों तुम जा रही हो... ❤️
             </h2>
-            <div class="font-hand text-2xl md:text-3xl text-slate-700 leading-relaxed space-y-6">
-                <p>"ये शहर, ये गलियां और हम सब तुम्हें बहुत याद करेंगे। परसों जब तुम घर के लिए निकलोगी, तो अपने साथ ढेर सारी यादें ले जाना।"</p>
+            <div class="font-hand text-3xl md:text-4xl text-rose-50 leading-relaxed space-y-8">
+                <p>"जाना तो सबको होता है, पर जब तुम जैसे दोस्त जाते हैं, तो सब कुछ थोड़ा फीका लगने लगता है।"</p>
                 
-                <p>"रास्ते भर खिड़की से बाहर देखते हुए उन सब लम्हों को याद करना जो हमने साथ बिताए हैं। घर पहुँच कर अपनों के साथ खूब मज़े करना, पर इस दोस्त को भूल मत जाना!"</p>
+                <p>"परसों जब तुम अपने सफर पर निकलोगी, तो बस इतना याद रखना कि यहाँ कोई है जो तुम्हें बहुत याद करेगा। घर पहुँचकर अपनों के प्यार में डूब जाना, पर उन यादों को भी सहेज कर रखना जो हमने यहाँ बनाई हैं।"</p>
                 
-                <p class="text-sky-600 font-bold">"सफ़र सुखद हो, मन खुश हो और तुम्हारी वापसी का इंतज़ार बना रहे।"</p>
+                <p class="text-rose-400 italic">"रास्ता लंबा है पर दिल की दुआएं साथ हैं। पहुँचते ही एक प्यारा सा मैसेज कर देना... मेरा दिल वहीं अटका रहेगा।"</p>
             </div>
             
-            <div class="mt-12 train-track w-full flex items-center justify-between">
-                <i class="fa-solid fa-circle text-sky-300 text-xs"></i>
-                <i class="fa-solid fa-train text-sky-600 text-2xl -mt-1"></i>
-                <i class="fa-solid fa-circle text-sky-300 text-xs"></i>
-            </div>
-            <div class="flex justify-between text-[10px] text-slate-400 mt-2 uppercase tracking-tighter">
-                <span>Current City</span>
-                <span>Destination: Home</span>
+            <div class="mt-16">
+                <div class="train-line w-full flex items-center justify-between">
+                    <div class="w-4 h-4 bg-rose-400 rounded-full shadow-[0_0_15px_rgba(251,113,133,0.8)]"></div>
+                    <i class="fa-solid fa-train-subway text-rose-100 text-3xl -mt-2 animate-bounce"></i>
+                    <div class="w-4 h-4 bg-rose-400 rounded-full shadow-[0_0_15px_rgba(251,113,133,0.8)]"></div>
+                </div>
+                <div class="flex justify-between text-[11px] text-rose-300/60 mt-4 uppercase tracking-[0.2em] font-bold">
+                    <span>From My Heart</span>
+                    <span>To Your Home</span>
+                </div>
             </div>
         </div>
 
-        <!-- Packing Checklist (Fun Interactive Section) -->
-        <div class="max-w-2xl w-full mb-12" data-aos="fade-up">
-            <h3 class="text-center font-bold text-slate-600 mb-6 flex items-center justify-center gap-3">
-                <i class="fa-solid fa-clipboard-list text-sky-500"></i> Packing Checklist
+        <!-- Checklist Section -->
+        <div class="max-w-2xl w-full mb-16" data-aos="fade-up">
+            <h3 class="text-center font-bold text-rose-200 mb-8 flex items-center justify-center gap-3 text-xl">
+                <i class="fa-solid fa-suitcase text-rose-400"></i> सफर की तैयारी
             </h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="bg-white/50 p-4 rounded-2xl flex items-center gap-3 border border-white">
-                    <input type="checkbox" checked class="w-5 h-5 accent-sky-500">
-                    <span class="text-sm">Phone Charger (Bhulna mat!)</span>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="glass p-5 rounded-2xl flex items-center gap-4 hover:bg-white/10 transition cursor-pointer">
+                    <input type="checkbox" checked class="w-6 h-6 accent-rose-500">
+                    <span class="text-rose-100">फोन चार्जर (सबसे ज़रूरी!)</span>
                 </div>
-                <div class="bg-white/50 p-4 rounded-2xl flex items-center gap-3 border border-white">
-                    <input type="checkbox" class="w-5 h-5 accent-sky-500">
-                    <span class="text-sm">Travel Snacks 🍟</span>
+                <div class="glass p-5 rounded-2xl flex items-center gap-4 hover:bg-white/10 transition cursor-pointer">
+                    <input type="checkbox" class="w-6 h-6 accent-rose-500">
+                    <span class="text-rose-100">रास्ते के स्नैक्स 🍿</span>
                 </div>
-                <div class="bg-white/50 p-4 rounded-2xl flex items-center gap-3 border border-white">
-                    <input type="checkbox" class="w-5 h-5 accent-sky-500">
-                    <span class="text-sm">Earphones/Music 🎧</span>
+                <div class="glass p-5 rounded-2xl flex items-center gap-4 hover:bg-white/10 transition cursor-pointer">
+                    <input type="checkbox" class="w-6 h-6 accent-rose-500">
+                    <span class="text-rose-100">Playlist (मेरी यादों वाली 🎧)</span>
                 </div>
-                <div class="bg-white/50 p-4 rounded-2xl flex items-center gap-3 border border-white">
-                    <input type="checkbox" class="w-5 h-5 accent-sky-500">
-                    <span class="text-sm">Water Bottle 💧</span>
+                <div class="glass p-5 rounded-2xl flex items-center gap-4 hover:bg-white/10 transition cursor-pointer">
+                    <input type="checkbox" class="w-6 h-6 accent-rose-500">
+                    <span class="text-rose-100">एक प्यारी सी मुस्कान 😊</span>
                 </div>
             </div>
         </div>
 
-        <!-- Final Message -->
-        <div class="text-center mt-8" data-aos="fade-up">
-            <p class="text-slate-400 italic mb-4">"घर पहुँचते ही एक मैसेज ज़रूर कर देना..."</p>
-            <div class="flex gap-4 justify-center">
-                <a href="index.html" class="bg-sky-500 text-white px-8 py-3 rounded-full font-bold shadow-lg hover:bg-sky-600 transition">
-                   <i class="fa-solid fa-house mr-2"></i> Back to Memories
-                </a>
+        <!-- Footer -->
+        <div class="text-center mt-8 pb-12" data-aos="fade-up">
+            <div class="bg-rose-400/20 px-8 py-4 rounded-full border border-rose-400/30 inline-block mb-10">
+                 <p class="text-rose-200 font-hand text-2xl italic">"अलविदा नहीं, बस एक छोटा सा ब्रेक..."</p>
             </div>
+            <br>
+            <a href="index.html" class="inline-flex items-center gap-2 text-rose-300 hover:text-white transition-colors text-sm uppercase tracking-widest font-semibold group">
+               <i class="fa-solid fa-arrow-left group-hover:-translate-x-2 transition-transform"></i> Back to Our Story
+            </a>
         </div>
-
     </div>
 
-    <!-- AOS Script -->
+    <!-- Scripts -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-        AOS.init({ duration: 1000, once: true });
+        AOS.init({ duration: 1200, once: true });
 
-        // Add fun message when checkbox is clicked
+        // Generate Random Hearts
+        const container = document.getElementById('heart-container');
+        function createHeart() {
+            const heart = document.createElement('i');
+            heart.className = `fa-solid fa-heart heart`;
+            const size = Math.random() * 20 + 10;
+            heart.style.fontSize = `${size}px`;
+            heart.style.left = `${Math.random() * 100}vw`;
+            heart.style.animationDuration = `${Math.random() * 5 + 5}s`;
+            heart.style.opacity = Math.random() * 0.3;
+            container.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 10000);
+        }
+        setInterval(createHeart, 400);
+
+        // Fun sound or alert for checklist
         document.querySelectorAll('input[type="checkbox"]').forEach(box => {
             box.addEventListener('change', () => {
                 if(box.checked) {
-                    const confetti = document.createElement('div');
-                    confetti.className = 'fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-[100] text-4xl';
-                    confetti.innerText = '✅ Done!';
-                    document.body.appendChild(confetti);
-                    setTimeout(() => confetti.remove(), 1000);
+                    const msg = document.createElement('div');
+                    msg.className = 'fixed top-20 left-1/2 -translate-x-1/2 bg-rose-500 text-white px-6 py-2 rounded-full shadow-lg z-[100] animate-bounce';
+                    msg.innerText = 'Perfect! ❤️';
+                    document.body.appendChild(msg);
+                    setTimeout(() => msg.remove(), 2000);
                 }
             });
         });
