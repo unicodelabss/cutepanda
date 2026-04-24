@@ -1,0 +1,53 @@
+<!-- Safe Journey Section -->
+<section class="py-20 px-6 bg-gradient-to-b from-white to-pink-50 overflow-hidden relative">
+    <!-- Animated Paper Plane -->
+    <div class="paper-plane-container absolute top-10 w-full pointer-events-none">
+        <i class="fa-solid fa-paper-plane text-pink-300 text-2xl animate-travel"></i>
+    </div>
+
+    <div class="max-w-4xl mx-auto text-center" data-aos="zoom-in">
+        <div class="inline-block p-4 bg-white rounded-full shadow-lg mb-6">
+            <i class="fa-solid fa-train-subway text-3xl text-pink-500"></i>
+        </div>
+        
+        <h2 class="font-serif text-4xl md:text-5xl text-gray-800 mb-6">परसों तुम जा रही हो... 🚂</h2>
+        
+        <div class="glass-card p-8 md:p-12 rounded-[2rem] border-2 border-dashed border-pink-200">
+            <p class="text-xl md:text-2xl text-gray-600 font-light italic leading-relaxed">
+                "पता है परसों तुम घर जा रही हो। घर पहुँच कर अपनों से मिलना, ढेर सारी खुशियाँ मनाना, पर इस पुराने दोस्त को भूल मत जाना। <br><br>
+                रास्ते में अपना ख्याल रखना और पहुँचते ही एक मैसेज ज़रूर कर देना। तुम्हारी कमी खलेगी, पर इंतज़ार रहेगा फिर से मिलने का!"
+            </p>
+            
+            <div class="mt-10 flex flex-col md:flex-row items-center justify-center gap-6">
+                <div class="flex items-center gap-2 text-pink-600 font-semibold">
+                    <i class="fa-solid fa-heart pulse"></i> Safe Journey, Aditi!
+                </div>
+                <div class="text-gray-400 hidden md:block">|</div>
+                <div class="text-gray-500 text-sm tracking-widest uppercase">
+                    अलविदा नहीं, फिर मिलेंगे! ✨
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Paper Plane Animation */
+    @keyframes travel {
+        0% { transform: translateX(-10%) translateY(0) rotate(0deg); opacity: 0; }
+        10% { opacity: 1; }
+        90% { opacity: 1; }
+        100% { transform: translateX(110vw) translateY(-50px) rotate(10deg); opacity: 0; }
+    }
+    .animate-travel {
+        display: inline-block;
+        animation: travel 8s linear infinite;
+    }
+    .pulse {
+        animation: pulse-heart 1.5s infinite;
+    }
+    @keyframes pulse-heart {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.2); }
+    }
+</style>
