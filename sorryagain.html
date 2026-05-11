@@ -74,32 +74,7 @@
 
         
 
-        <!-- Peace Offerings (Vouchers) -->
-        <div class="w-full grid grid-cols-1 md:grid-cols-3 gap-6 mb-12" data-aos="fade-up">
-            <!-- Voucher 1 -->
-            <div class="glass p-6 rounded-2xl border-l-4 border-yellow-400 relative overflow-hidden group">
-                <i class="fa-solid fa-ice-cream absolute -right-4 -bottom-4 text-6xl text-yellow-100 transition-transform group-hover:scale-125"></i>
-                <h4 class="font-bold text-gray-700 mb-2">Free Treat Voucher</h4>
-                <p class="text-xs text-gray-500 mb-4">Valid for 1 Ice-cream or Chocolate of your choice.</p>
-                <button onclick="redeem(this)" class="text-[10px] font-bold text-yellow-600 uppercase border border-yellow-400 px-3 py-1 rounded-full">Redeem Now</button>
-            </div>
-
-            <!-- Voucher 2 -->
-            <div class="glass p-6 rounded-2xl border-l-4 border-blue-400 relative overflow-hidden group">
-                <i class="fa-solid fa-ear-listen absolute -right-4 -bottom-4 text-6xl text-blue-100 transition-transform group-hover:scale-125"></i>
-                <h4 class="font-bold text-gray-700 mb-2">Listening Coupon</h4>
-                <p class="text-xs text-gray-500 mb-4">I will listen to your rants for 1 hour without complaining.</p>
-                <button onclick="redeem(this)" class="text-[10px] font-bold text-blue-600 uppercase border border-blue-400 px-3 py-1 rounded-full">Redeem Now</button>
-            </div>
-
-            <!-- Voucher 3 -->
-            <div class="glass p-6 rounded-2xl border-l-4 border-green-400 relative overflow-hidden group">
-                <i class="fa-solid fa-handshake absolute -right-4 -bottom-4 text-6xl text-green-100 transition-transform group-hover:scale-125"></i>
-                <h4 class="font-bold text-gray-700 mb-2">Win Any Argument</h4>
-                <p class="text-xs text-gray-500 mb-4">Redeem this to win any 1 future argument instantly.</p>
-                <button onclick="redeem(this)" class="text-[10px] font-bold text-green-600 uppercase border border-green-400 px-3 py-1 rounded-full">Redeem Now</button>
-            </div>
-        </div>
+        
 
         <!-- Heartfelt Note -->
         <div class="w-full glass rounded-3xl p-8 text-center italic text-gray-600" data-aos="fade-up">
@@ -140,7 +115,7 @@
             const main = document.getElementById('sorry-main');
             const music = document.getElementById('sorry-music');
 
-            // PASSWORD: galtiho-gayi
+            // PASSWORD: AAPKA BEST FRIEND
             if(pass.toLowerCase() === "dhananjay") {
                 music.play();
                 vault.style.opacity = '0';
@@ -179,7 +154,7 @@
                 text.className = "text-xl font-bold text-green-400 mb-8 uppercase tracking-widest";
             } else {
                 emoji.innerText = "🥰";
-                text.innerText = "Best Friends Forever!";
+                text.innerText = "Friends Again!";
                 text.className = "text-xl font-bold text-pink-500 mb-8 uppercase tracking-widest animate-bounce";
                 confetti({
                     particleCount: 100,
