@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sincere Apology | Aditi ❤️</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Satisfy&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <style>
+        body { font-family: 'Poppins', sans-serif; background: #f3f0ff; color: #4b5563; overflow-x: hidden; }
+        .font-cursive { font-family: 'Satisfy', cursive; }
+        
+        .glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px rgba(139, 92, 246, 0.1);
+        }
+
+        /* Forgiveness Slider Styling */
+        input[type=range] { -webkit-appearance: none; width: 100%; background: transparent; }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%; height: 8px; cursor: pointer; background: #ddd6fe; border-radius: 5px;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            height: 24px; width: 24px; border-radius: 50%; background: #8b5cf6;
+            cursor: pointer; -webkit-appearance: none; margin-top: -8px;
+            box-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
+        }
+
+        #sorry-main { display: none; }
+        .shake { animation: shake 0.4s; }
+        @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-8px); } 75% { transform: translateX(8px); } }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+
+    <!-- Background Music -->
+    <audio id="sorry-music" loop>
+        <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- 1. VAULT LOGIN SCREEN -->
+    <div id="sorry-vault" class="fixed inset-0 z-[1000] flex items-center justify-center bg-purple-50 p-6 transition-all duration-700">
+        <div class="glass p-10 rounded-[2.5rem] max-w-sm w-full text-center">
+            <div class="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <i class="fa-solid fa-hand-holding-heart text-purple-500 text-3xl"></i>
+            </div>
+            <h2 class="font-cursive text-4xl text-purple-600 mb-4">Peace Treaty</h2>
+            <p class="text-gray-400 text-xs uppercase tracking-widest mb-8">Verification for Aditi only</p>
+            
+            <input type="password" id="vault-pass" placeholder="Password: galtiho-gayi" 
+                class="w-full p-4 bg-white/50 border border-purple-100 rounded-2xl mb-4 text-center outline-none focus:ring-2 focus:ring-purple-300">
+            
+            <button onclick="unlockSorry()" class="w-full bg-purple-500 text-white p-4 rounded-2xl font-bold shadow-lg hover:bg-purple-600 transition-all">
+                ACCEPT TREATY
+            </button>
+            <p id="vault-error" class="text-red-400 text-xs mt-4 hidden italic">Galat Code! (Hint: galtiho-gayi)</p>
+        </div>
+    </div>
+
+    <!-- 2. MAIN SORRY DASHBOARD -->
+    <div id="sorry-main" class="w-full max-w-4xl py-10 flex flex-col items-center">
+        
+        <!-- Header Section -->
+        <div class="text-center mb-12" data-aos="fade-up">
+            <h1 class="font-cursive text-6xl text-purple-600 mb-4">I'm So Sorry, Aditi! 🥺</h1>
+            <p class="text-gray-500 italic">Maine bohot socha aur realize kiya ki galti meri thi...</p>
+        </div>
+
+        <!-- The Forgiveness Meter -->
+        <div class="w-full glass rounded-3xl p-8 md:p-12 mb-10" data-aos="zoom-in">
+            <div class="flex flex-col items-center">
+                <div id="meter-emoji" class="text-7xl mb-4 transition-all duration-300">😡</div>
+                <h3 id="meter-text" class="text-xl font-bold text-gray-700 mb-8 uppercase tracking-widest">Bohot Zyada Gussa!</h3>
+                
+                <input type="range" id="forgive-slider" min="0" max="100" value="0" oninput="updateMeter(this.value)">
+                
+                <div class="flex justify-between w-full mt-4 text-[10px] font-bold text-gray-400 uppercase">
+                    <span>Still Mad</span>
+                    <span>Fully Forgiven</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Peace Offerings (Vouchers) -->
+        <div class="w-full grid grid-cols-1 md:grid-cols-3 gap-6 mb-12" data-aos="fade-up">
+            <!-- Voucher 1 -->
+            <div class="glass p-6 rounded-2xl border-l-4 border-yellow-400 relative overflow-hidden group">
+                <i class="fa-solid fa-ice-cream absolute -right-4 -bottom-4 text-6xl text-yellow-100 transition-transform group-hover:scale-125"></i>
+                <h4 class="font-bold text-gray-700 mb-2">Free Treat Voucher</h4>
+                <p class="text-xs text-gray-500 mb-4">Valid for 1 Ice-cream or Chocolate of your choice.</p>
+                <button onclick="redeem(this)" class="text-[10px] font-bold text-yellow-600 uppercase border border-yellow-400 px-3 py-1 rounded-full">Redeem Now</button>
+            </div>
+
+            <!-- Voucher 2 -->
+            <div class="glass p-6 rounded-2xl border-l-4 border-blue-400 relative overflow-hidden group">
+                <i class="fa-solid fa-ear-listen absolute -right-4 -bottom-4 text-6xl text-blue-100 transition-transform group-hover:scale-125"></i>
+                <h4 class="font-bold text-gray-700 mb-2">Listening Coupon</h4>
+                <p class="text-xs text-gray-500 mb-4">I will listen to your rants for 1 hour without complaining.</p>
+                <button onclick="redeem(this)" class="text-[10px] font-bold text-blue-600 uppercase border border-blue-400 px-3 py-1 rounded-full">Redeem Now</button>
+            </div>
+
+            <!-- Voucher 3 -->
+            <div class="glass p-6 rounded-2xl border-l-4 border-green-400 relative overflow-hidden group">
+                <i class="fa-solid fa-handshake absolute -right-4 -bottom-4 text-6xl text-green-100 transition-transform group-hover:scale-125"></i>
+                <h4 class="font-bold text-gray-700 mb-2">Win Any Argument</h4>
+                <p class="text-xs text-gray-500 mb-4">Redeem this to win any 1 future argument instantly.</p>
+                <button onclick="redeem(this)" class="text-[10px] font-bold text-green-600 uppercase border border-green-400 px-3 py-1 rounded-full">Redeem Now</button>
+            </div>
+        </div>
+
+        <!-- Heartfelt Note -->
+        <div class="w-full glass rounded-3xl p-8 text-center italic text-gray-600" data-aos="fade-up">
+            "Dosti mein thodi nok-jhonk chalti hai, par jab tum chup ho jati ho toh achha nahi lagta. 
+            Maaf kardo, hum phir se wahi purani Aditi aur uski pagal bestie ban jate hain? 💖"
+        </div>
+
+        <a href="index.html" class="mt-10 text-gray-400 hover:text-purple-600 transition text-xs uppercase tracking-widest">
+            <i class="fa-solid fa-arrow-left mr-2"></i> Go Back Home
+        </a>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+
+    <script>
+        // Password Logic
+        function unlockSorry() {
+            const pass = document.getElementById('vault-pass').value;
+            const vault = document.getElementById('sorry-vault');
+            const main = document.getElementById('sorry-main');
+            const music = document.getElementById('sorry-music');
+
+            // PASSWORD: galtiho-gayi
+            if(pass.toLowerCase() === "galtiho-gayi") {
+                music.play();
+                vault.style.opacity = '0';
+                setTimeout(() => {
+                    vault.style.display = 'none';
+                    main.style.display = 'flex';
+                    AOS.init({ duration: 1000 });
+                }, 700);
+            } else {
+                document.querySelector('#sorry-vault .glass').classList.add('shake');
+                document.getElementById('vault-error').classList.remove('hidden');
+                setTimeout(() => document.querySelector('#sorry-vault .glass').classList.remove('shake'), 400);
+            }
+        }
+
+        // Forgiveness Meter Logic
+        function updateMeter(val) {
+            const emoji = document.getElementById('meter-emoji');
+            const text = document.getElementById('meter-text');
+            
+            if(val < 25) {
+                emoji.innerText = "😡";
+                text.innerText = "Bohot Zyada Gussa!";
+                text.className = "text-xl font-bold text-red-500 mb-8 uppercase tracking-widest";
+            } else if(val < 50) {
+                emoji.innerText = "😒";
+                text.innerText = "Theek hai par baat nahi karungi";
+                text.className = "text-xl font-bold text-orange-400 mb-8 uppercase tracking-widest";
+            } else if(val < 75) {
+                emoji.innerText = "🤨";
+                text.innerText = "Soch Rahi Hoon...";
+                text.className = "text-xl font-bold text-blue-400 mb-8 uppercase tracking-widest";
+            } else if(val < 100) {
+                emoji.innerText = "🙂";
+                text.innerText = "Chalo Maaf Kiya!";
+                text.className = "text-xl font-bold text-green-400 mb-8 uppercase tracking-widest";
+            } else {
+                emoji.innerText = "🥰";
+                text.innerText = "Best Friends Forever!";
+                text.className = "text-xl font-bold text-pink-500 mb-8 uppercase tracking-widest animate-bounce";
+                confetti({
+                    particleCount: 100,
+                    spread: 70,
+                    origin: { y: 0.6 },
+                    colors: ['#a78bfa', '#fbcfe8', '#8b5cf6']
+                });
+            }
+        }
+
+        // Voucher Redeem Logic
+        function redeem(btn) {
+            btn.innerText = "Redeemed! ✅";
+            btn.disabled = true;
+            btn.className = "text-[10px] font-bold text-gray-400 uppercase border border-gray-300 px-3 py-1 rounded-full cursor-not-allowed";
+        }
+    </script>
+</body>
+</html>
