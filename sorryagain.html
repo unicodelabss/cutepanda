@@ -131,39 +131,7 @@
             }
         }
 
-        // Forgiveness Meter Logic
-        function updateMeter(val) {
-            const emoji = document.getElementById('meter-emoji');
-            const text = document.getElementById('meter-text');
-            
-            if(val < 25) {
-                emoji.innerText = "😡";
-                text.innerText = "Bohot Zyada Gussa!";
-                text.className = "text-xl font-bold text-red-500 mb-8 uppercase tracking-widest";
-            } else if(val < 50) {
-                emoji.innerText = "😒";
-                text.innerText = "Theek hai par baat nahi karungi";
-                text.className = "text-xl font-bold text-orange-400 mb-8 uppercase tracking-widest";
-            } else if(val < 75) {
-                emoji.innerText = "🤨";
-                text.innerText = "Soch Rahi Hoon...";
-                text.className = "text-xl font-bold text-blue-400 mb-8 uppercase tracking-widest";
-            } else if(val < 100) {
-                emoji.innerText = "🙂";
-                text.innerText = "Chalo Maaf Kiya!";
-                text.className = "text-xl font-bold text-green-400 mb-8 uppercase tracking-widest";
-            } else {
-                emoji.innerText = "🥰";
-                text.innerText = "Friends Again!";
-                text.className = "text-xl font-bold text-pink-500 mb-8 uppercase tracking-widest animate-bounce";
-                confetti({
-                    particleCount: 100,
-                    spread: 70,
-                    origin: { y: 0.6 },
-                    colors: ['#a78bfa', '#fbcfe8', '#8b5cf6']
-                });
-            }
-        }
+        
 
         // Voucher Redeem Logic
         function redeem(btn) {
