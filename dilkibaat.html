@@ -244,6 +244,87 @@
         </div>
     </div>
 </section>
+
+        <!-- Bonus Secret Section -->
+<section class="py-24 px-6 bg-slate-900 relative overflow-hidden">
+    <!-- Background Decoration -->
+    <div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+        <div class="absolute top-10 left-10 w-32 h-32 bg-amber-400 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-10 right-10 w-32 h-32 bg-rose-500 rounded-full blur-3xl"></div>
+    </div>
+
+    <div class="max-w-lg mx-auto text-center relative z-10">
+        <h3 class="font-serif text-amber-200 text-2xl italic mb-10" data-aos="fade-up">
+            Ek aakhri tohfa... (Bonus Memory)
+        </h3>
+
+        <!-- Secret Polaroid -->
+        <div class="relative inline-block group cursor-pointer" onclick="revealBonus(this)" data-aos="zoom-in">
+            <div class="bg-white p-4 pb-12 shadow-2xl rounded-sm transform rotate-2 transition-transform duration-500 group-hover:rotate-0">
+                
+                <!-- Image Container -->
+                <div class="relative overflow-hidden bg-gray-800 aspect-[4/5] w-64 md:w-80">
+                    <img id="bonusImg" src="images/bonus.jpg" alt="Bonus Memory" 
+                         class="w-full h-full object-cover filter blur-2xl grayscale brightness-50 transition-all duration-[3000s] ease-in-out">
+                    
+                    <!-- Overlay Text -->
+                    <div id="tapText" class="absolute inset-0 flex items-center justify-center">
+                        <span class="text-white font-bold tracking-widest text-sm bg-black/40 px-4 py-2 rounded-full backdrop-blur-sm">TAP TO REVEAL</span>
+                    </div>
+                </div>
+
+                <!-- Hidden Caption -->
+                <div id="bonusCaption" class="mt-6 opacity-0 transition-opacity duration-1000">
+                    <p class="font-hand text-2xl text-gray-800">"Hamesha aise hi muskurate rehna!"</p>
+                </div>
+            </div>
+
+            <!-- Sparkle Effect Container -->
+            <div id="sparkle-container" class="absolute inset-0 pointer-events-none"></div>
+        </div>
+
+        <p class="mt-12 text-slate-500 text-xs italic">
+            * Is photo ko dhyaan se dekho, ye meri favorite hai.
+        </p>
+    </div>
+</section>
+
+<style>
+    /* Slow Reveal Animation */
+    .developing {
+        filter: blur(0) grayscale(0) brightness(1) !important;
+        transition: all 3s ease-in-out !important;
+    }
+    
+    .font-hand { font-family: 'Kalam', cursive; }
+</style>
+
+<script>
+    function revealBonus(element) {
+        const img = document.getElementById('bonusImg');
+        const tapText = document.getElementById('tapText');
+        const caption = document.getElementById('bonusCaption');
+
+        // Start Developing Animation
+        img.classList.add('developing');
+        
+        // Hide "Tap" text
+        tapText.style.opacity = '0';
+        
+        // Show Caption after a short delay
+        setTimeout(() => {
+            caption.style.opacity = '1';
+        }, 1500);
+
+        // Add some "Magic" particles (Confetti)
+        confetti({
+            particleCount: 40,
+            spread: 60,
+            origin: { y: 0.8 },
+            colors: ['#fbbf24', '#f43f5e', '#ffffff']
+        });
+    }
+</script>
         
         
 
