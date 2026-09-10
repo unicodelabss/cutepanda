@@ -3,124 +3,131 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sirf Tumhare Liye... ✨</title>
+    <title>मेरे दिल की बात... ✨</title>
     
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,700&family=Lora:ital,wght@0,400;1,500&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400;1,700&family=Lora:ital,wght@0,400;1,500&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    
+
     <style>
-        /* Base Styling */
         body, html {
             margin: 0; padding: 0;
-            background-color: #050510; /* Dark Midnight Blue */
-            color: #e2e8f0;
+            background-color: #020617; /* Midnight Blue */
+            color: #f8fafc;
             font-family: 'Poppins', sans-serif;
-            min-height: 100vh;
-            overflow-x: hidden;
+            scroll-behavior: smooth;
         }
 
         .font-serif { font-family: 'Playfair Display', serif; }
         .font-hindi { font-family: 'Lora', serif; line-height: 1.8; }
 
-        /* Starry Background (CSS Only for stability) */
-        #star-bg {
+        /* Starry Background Effect */
+        #star-container {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+            background: radial-gradient(circle at center, #1e293b 0%, #020617 100%);
             z-index: -1;
+            overflow: hidden;
         }
+        .star {
+            position: absolute; background: white; border-radius: 50%;
+            opacity: 0.3; animation: twinkle var(--d) infinite;
+        }
+        @keyframes twinkle { 0%, 100% { opacity: 0.3; transform: scale(1); } 50% { opacity: 1; transform: scale(1.2); } }
 
-        /* Glass Container */
-        .glass-box {
-            background: rgba(255, 255, 255, 0.05);
+        /* Glass Panel */
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 2rem;
         }
 
-        /* Animations */
-        .fade-in { animation: fadeIn 1.5s ease-in forwards; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-        #main-content { display: none; }
-        
-        .glow-text {
-            color: #fde68a;
-            text-shadow: 0 0 10px rgba(253, 230, 138, 0.5);
+        /* Gold Gradient Text */
+        .gold-text {
+            background: linear-gradient(to right, #fde68a, #f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        /* Pulse Heart */
-        .pulse { animation: pulse 2s infinite; }
-        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+        /* Hide main content initially */
+        #content-area { display: none; }
+
+        /* Animation */
+        .fade-in { animation: fadeIn 1.5s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
-<body>
+<body class="overflow-hidden"> <!-- Lock scroll until login -->
 
-    <div id="star-bg"></div>
+    <!-- Stars Container -->
+    <div id="star-container"></div>
 
-    <!-- Background Music -->
-    <audio id="myMusic" loop>
-        <source src="https://www.bensound.com/bensound-music/bensound-tomorrow.mp3" type="audio/mpeg">
+    <!-- Music -->
+    <audio id="bgMusic" loop>
+        <source src="https://www.bensound.com/bensound-music/bensound-memories.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- 1. LOGIN / ENCRYPTION LAYER -->
-    <div id="login-layer" class="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-[#050510]">
-        <div class="max-w-sm w-full glass-box p-10 text-center shadow-2xl border-t-2 border-amber-200/30">
-            <div class="mb-6"><i class="fa-solid fa-moon text-4xl text-amber-200 pulse"></i></div>
-            <h1 class="font-serif text-3xl italic glow-text mb-2">The Silent Letter</h1>
+    <!-- 1. LOGIN SCREEN (Overlay) -->
+    <div id="login-overlay" class="fixed inset-0 z-[9999] flex items-center justify-center bg-slate-950 p-6">
+        <div class="max-w-sm w-full glass p-10 text-center shadow-2xl border-t-2 border-amber-500/20">
+            <div class="mb-6"><i class="fa-solid fa-moon text-4xl text-amber-200"></i></div>
+            <h1 class="font-serif text-3xl italic gold-text mb-2">Private Thoughts</h1>
             <p class="text-slate-500 text-[10px] tracking-[0.3em] uppercase mb-8">Authorised Access Only</p>
             
             <input type="password" id="passCode" placeholder="Enter Password" 
-                class="w-full bg-slate-900/50 border border-slate-700 p-4 rounded-2xl mb-6 text-center outline-none focus:border-amber-200 transition-all text-white">
+                class="w-full bg-slate-900 border border-slate-800 p-4 rounded-2xl mb-6 text-center outline-none focus:border-amber-400 transition-all text-white">
             
-            <button onclick="unlock()" class="w-full bg-amber-200 text-slate-950 p-4 rounded-2xl font-bold hover:bg-amber-300 transition-all shadow-lg shadow-amber-200/10">
-                READ THE MESSAGE
+            <button onclick="unlock()" class="w-full bg-amber-200 text-slate-950 p-4 rounded-2xl font-bold hover:bg-amber-300 transition-all shadow-lg active:scale-95">
+                खोलें (Unlock)
             </button>
-            <p id="error" class="text-red-400 text-xs mt-4 hidden">Galti ho gayi? Password check karein.</p>
+            <p id="error" class="text-red-400 text-xs mt-4 hidden">गलत पासवर्ड! फिर से कोशिश करें।</p>
         </div>
     </div>
 
-    <!-- 2. MAIN HEARTFELT PAGE (Initially Hidden) -->
-    <div id="main-content" class="relative z-10 fade-in">
+    <!-- 2. MAIN CONTENT AREA -->
+    <div id="content-area" class="fade-in relative z-10">
         
-        <!-- Hero -->
+        <!-- Welcome Section -->
         <header class="h-screen flex flex-col items-center justify-center text-center px-6">
-            <h1 class="font-serif text-5xl md:text-7xl italic glow-text mb-4">Kuch baatein...</h1>
-            <p class="text-slate-400 font-light italic">Jo shayad main kabhi keh nahi paaya.</p>
-            <div class="mt-20 animate-bounce text-slate-600"><i class="fa-solid fa-chevron-down text-2xl"></i></div>
+            <h1 class="font-serif text-5xl md:text-8xl italic gold-text mb-4">प्रिय अदिति...</h1>
+            <p class="text-slate-400 font-light italic">वो बातें, जो अक्सर अधूरी रह गईं।</p>
+            <div class="mt-20 animate-bounce text-slate-600"><i class="fa-solid fa-chevron-down text-3xl"></i></div>
         </header>
 
-        <!-- Message Box -->
+        <!-- The Letter -->
         <section class="py-20 px-6 max-w-4xl mx-auto">
-            <div class="glass-box p-10 md:p-20 space-y-10 border-b-4 border-amber-200/20">
-                <div class="font-hindi text-2xl md:text-3xl text-slate-200 italic space-y-8">
-                    <!-- APNA POORA MESSAGE YAHA LIKHEIN -->
-                    <p>"अदिति, कल जब तुम चली जाओगी, तो ये गलियाँ और ये शहर थोड़े खामोश हो जाएंगे। पर उस खामोशी से ज़्यादा शोर मेरे मन में होगा।"</p>
+            <div class="glass p-8 md:p-20 space-y-12 shadow-2xl">
+                <div class="font-hindi text-2xl md:text-3xl text-slate-100 italic space-y-10 leading-relaxed">
                     
-                    <p>"मैं अक्सर तुम्हारे सामने खड़ा होकर भी वो बातें नहीं कह पाता जो कहना चाहता हूँ। शायद खोने का डर है, या शायद शब्दों की कमी। पर आज बस ये जान लो कि तुम मेरे लिए क्या मायने रखती हो।"</p>
+                    <p>"अदिति, कल जब तुम चली जाओगी, तो शायद इस शहर की हवाओं में वो शोर नहीं रहेगा जो तुम्हारी बातों से हुआ करता था।"</p>
                     
-                    <p class="glow-text">"तुम वो रोशनी हो जिसने मेरे धुंधले दिनों को चमकाया है। तुम्हारी हर वो छोटी सलाह, वो 'डॉक्टर' वाली फिक्र और वो हँसी... ये सब अब मेरे वजूद का हिस्सा हैं।"</p>
+                    <p>"मैं जानते हुए भी तुम्हारे सामने कभी कुछ बोल नहीं पाता। कभी अल्फाज़ खत्म हो जाते हैं, तो कभी डर लगता है कि कहीं ये अनकही बातें हमारे इस रिश्ते को भारी न बना दें।"</p>
                     
-                    <p>"दूरी मीलों की हो सकती है, पर यादों की कोई सरहद नहीं होती। घर जाकर अपनी उस चमक को कम मत होने देना, क्योंकि तुम्हारी मुस्कान से ही किसी और की दुनिया रोशन होती है।"</p>
+                    <p class="gold-text font-bold">"पर आज बस ये कहना चाहता हूँ कि तुम मेरी दुनिया का वो हिस्सा हो, जिसे मैं कभी खोना नहीं चाहता। तुम्हारी हर फिक्र, तुम्हारी वो हँसी, और वो 'डॉक्टर' वाली सलाह... ये सब मेरी आदतों में शामिल हैं।"</p>
+                    
+                    <p>"दूरी भले ही बढ़ जाए, पर ये याद रखना कि यहाँ कोई हमेशा तुम्हारे वापस लौटने का इंतज़ार करेगा। अपनी इस चमक को घर जाकर भी खोने मत देना।"</p>
 
-                    <p class="glow-text font-bold">"अपना ख्याल रखना, सुरक्षित पहुँचना... और याद रखना, यहाँ कोई हमेशा तुम्हारे वापस लौटने का इंतज़ार करेगा।"</p>
+                    <p class="gold-text">"सुरक्षित पहुँचना, और याद रखना—तुम बहुत खास हो।"</p>
+
                 </div>
 
                 <div class="pt-10 border-t border-slate-800 text-center">
-                    <i class="fa-solid fa-heart text-amber-200 text-3xl mb-4"></i>
-                    <p class="text-[10px] tracking-[0.4em] text-slate-500 uppercase">Always Caring For You</p>
+                    <i class="fa-solid fa-heart text-amber-200 text-4xl mb-4 animate-pulse"></i>
+                    <p class="text-[10px] tracking-[0.5em] text-slate-500 uppercase">Hamesha Tumhare Saath</p>
                 </div>
             </div>
         </section>
 
-        <!-- Gallery -->
+        <!-- Photo Section -->
         <section class="py-20 px-6 text-center">
-            <h2 class="font-serif text-3xl italic mb-12 glow-text">Hamesha Paas...</h2>
+            <h2 class="font-serif text-3xl italic mb-12 gold-text">यादों के कुछ पन्ने...</h2>
             <div class="flex flex-wrap justify-center gap-10">
-                <div class="w-64 h-80 glass-box p-3 rounded-2xl rotate-[-3deg] hover:rotate-0 transition-all duration-500">
+                <div class="w-64 h-80 glass p-3 rotate-[-3deg] hover:rotate-0 transition-transform duration-500">
                     <img src="images/1.jpg" class="w-full h-full object-cover rounded-xl opacity-80 hover:opacity-100">
                 </div>
-                <div class="w-64 h-80 glass-box p-3 rounded-2xl rotate-[3deg] hover:rotate-0 transition-all duration-500">
+                <div class="w-64 h-80 glass p-3 rotate-[3deg] hover:rotate-0 transition-transform duration-500">
                     <img src="images/2.jpg" class="w-full h-full object-cover rounded-xl opacity-80 hover:opacity-100">
                 </div>
             </div>
@@ -128,20 +135,51 @@
 
         <!-- Footer -->
         <footer class="py-20 text-center opacity-40">
-            <p class="font-serif italic text-xl mb-4">"Alvida nahi, bas intezar..."</p>
-            <a href="index.html" class="text-[10px] tracking-[0.4em] uppercase font-bold text-amber-200">Main Page</a>
+            <a href="index.html" class="text-[10px] tracking-[0.4em] uppercase font-bold text-amber-200">Main Home</a>
         </footer>
     </div>
 
+    <!-- Scripts -->
     <script>
+        // 1. Generate Stars (Fail-safe JavaScript)
+        const starContainer = document.getElementById('star-container');
+        for (let i = 0; i < 100; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            const size = Math.random() * 3;
+            star.style.width = size + 'px';
+            star.style.height = size + 'px';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.setProperty('--d', (Math.random() * 3 + 2) + 's');
+            starContainer.appendChild(star);
+        }
+
+        // 2. Unlock Function (The Core Fix)
         function unlock() {
             const passInput = document.getElementById('passCode').value;
-            const loginLayer = document.getElementById('login-layer');
-            const mainContent = document.getElementById('main-content');
-            const music = document.getElementById('myMusic');
+            const loginOverlay = document.getElementById('login-overlay');
+            const contentArea = document.getElementById('content-area');
+            const music = document.getElementById('bgMusic');
             const error = document.getElementById('error');
 
-            // PASSWORD: home (Aap isse badal sakte hain)
+            // पासवर्ड: home
             if(passInput.toLowerCase() === "home") {
-                // Play music
-                music.play().catch(e => console.log("Music blocke
+                // 1. Play music
+                music.play().catch(e => console.log("Music blocked by browser policy"));
+                
+                // 2. Reveal Content
+                loginOverlay.style.display = 'none'; // Turant login hatayein
+                contentArea.style.display = 'block'; // Content dikhayein
+                
+                // 3. Enable Scrolling
+                document.body.classList.remove('overflow-hidden');
+                document.body.style.overflow = 'auto';
+            } else {
+                error.classList.remove('hidden');
+                document.getElementById('passCode').classList.add('border-red-500');
+            }
+        }
+    </script>
+</body>
+</html>
